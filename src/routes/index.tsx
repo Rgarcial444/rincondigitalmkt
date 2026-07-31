@@ -11,7 +11,6 @@ import { CATEGORIES, MATERIALS, SERVICES, whatsappUrl, type CategoryId } from "@
 import { TRABAJOS_IMAGES } from "@/data/trabajos";
 import { ServiceCard } from "@/components/studio/ServiceCard";
 import { ServiceSheet } from "@/components/studio/ServiceSheet";
-import ImageTrail from "@/components/ImageTrail";
 import PixelCard from "@/components/PixelCard";
 import CardFX from "@/components/CardFX";
 import { cn } from "@/lib/utils";
@@ -36,9 +35,10 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const PILLARS = [
+const ABOUT = [
+  { icon: Compass, title: "Misión", text: "Ideas en piezas impecables, con procesos responsables y tiempos que respetan tu proyecto." },
+  { icon: Eye, title: "Visión", text: "Ser el referente regional en comunicación visual, uniendo diseño, tecnología y producción." },
   { icon: Sparkles, title: "Vanguardia", text: "Tecnología al servicio de una buena idea." },
-  { icon: Eye, title: "Apertura", text: "Escuchamos el proyecto antes de proponer el formato." },
   { icon: Scale, title: "Sentido Común", text: "Soluciones justas para tu objetivo y presupuesto." },
 ];
 
@@ -227,41 +227,6 @@ function Index() {
         </div>
       </section>
 
-      {/* MANIFIESTO */}
-      <section id="estudio" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-16 sm:py-24">
-        <div className="grid gap-8 lg:grid-cols-[1fr_1.3fr] lg:gap-12">
-          <div>
-            <p className="eyebrow">Manifiesto</p>
-            <h2 className="mt-4 text-3xl font-semibold leading-tight sm:text-4xl">
-              Pensar la pieza antes de fabricarla.
-            </h2>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-            <div className="hover-glow rounded-xl border border-border bg-card p-6">
-              <Compass className="size-5 text-primary" />
-              <h3 className="mt-4 text-lg font-semibold">Misión</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Ideas en piezas impecables, con procesos responsables y tiempos que respetan tu proyecto.
-              </p>
-            </div>
-            <div className="hover-glow rounded-xl border border-border bg-card p-6">
-              <Eye className="size-5 text-primary" />
-              <h3 className="mt-4 text-lg font-semibold">Visión</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Ser el referente regional en comunicación visual, uniendo diseño, tecnología y producción.
-              </p>
-            </div>
-            {PILLARS.map((p) => (
-              <div key={p.title} className="hover-glow rounded-xl border border-border bg-card p-6">
-                <p.icon className="size-5 text-primary" />
-                <h3 className="mt-4 text-lg font-semibold">{p.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{p.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CATÁLOGO */}
       <section id="catalogo" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-12 sm:px-6 sm:py-16">
         <div className="flex flex-wrap items-end justify-between gap-6">
@@ -318,14 +283,21 @@ function Index() {
               Desliza el cursor sobre la galería.
             </p>
           </div>
-          <div className="relative mt-10 h-[500px] overflow-hidden rounded-xl border border-border bg-card">
+          <div className="relative mt-10 h-[520px] overflow-hidden rounded-xl border border-border bg-card">
             <PixelCard variant="default" className="rounded-xl">
-              <div className="pointer-events-none absolute inset-0 z-0 flex select-none items-center justify-center">
-                <span className="bg-gradient-to-b from-primary/20 to-primary/5 bg-clip-text text-[clamp(4rem,15vw,10rem)] font-bold leading-none tracking-tighter text-transparent blur-[2px] sm:blur-[4px]">
-                  Rincón Digital
-                </span>
+              <div className="h-full w-full overflow-y-auto p-3">
+                <div className="columns-2 gap-3 sm:columns-3 lg:columns-4">
+                  {TRABAJOS_IMAGES.map((img, i) => (
+                    <img
+                      key={i}
+                      src={img}
+                      alt=""
+                      loading="lazy"
+                      className="mb-3 w-full rounded-lg border border-border/50 object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                  ))}
+                </div>
               </div>
-              <ImageTrail items={TRABAJOS_IMAGES} variant={1} />
             </PixelCard>
           </div>
         </div>
@@ -412,7 +384,24 @@ function Index() {
 
       <footer className="border-t border-border py-10 sm:py-12">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 text-sm text-muted-foreground sm:px-6">
-          <p className="font-display text-foreground">Rincón Digital</p>
+          <div className="group relative">
+            <p className="cursor-default font-display text-foreground">
+              Rincón<span className="text-primary">.</span>Digital
+            </p>
+            <div className="pointer-events-none absolute bottom-full left-0 mb-3 hidden w-72 rounded-xl border border-border bg-card p-4 opacity-0 shadow-lg transition-opacity duration-200 group-hover:pointer-events-auto group-hover:block group-hover:opacity-100">
+              <div className="space-y-3">
+                {ABOUT.map((a) => (
+                  <div key={a.title} className="flex gap-2.5">
+                    <a.icon className="mt-0.5 size-4 shrink-0 text-primary" />
+                    <div>
+                      <p className="text-sm font-semibold text-foreground">{a.title}</p>
+                      <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">{a.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
           <p>Letreros Luminosos · Letras 3D · Impresión & Gran Formato</p>
         </div>
       </footer>
