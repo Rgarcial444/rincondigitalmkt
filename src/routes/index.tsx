@@ -231,15 +231,15 @@ function Index() {
 
 
       {/* MANIFIESTO */}
-      <section id="estudio" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.3fr]">
+      <section id="estudio" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24">
+        <div className="grid gap-8 lg:grid-cols-[1fr_1.3fr] lg:gap-12">
           <div>
             <p className="eyebrow">Manifiesto del estudio</p>
-            <h2 className="mt-4 text-4xl font-semibold leading-tight">
-              Pensar la pieza antes de imprimirla.
+            <h2 className="mt-4 text-3xl font-semibold leading-tight sm:text-4xl">
+              Pensar la pieza antes de fabricarla.
             </h2>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
             <div className="hover-glow rounded-xl border border-border bg-card p-6">
               <Compass className="size-5 text-primary" />
               <h3 className="mt-4 text-lg font-semibold">Misión</h3>
