@@ -1,0 +1,51 @@
+@keyframes particle-float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(10px, -10px) rotate(180deg); }
+}
+
+.card-fx {
+  position: relative;
+  overflow: hidden;
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 200px;
+  transition: all 0.3s ease;
+}
+
+.card-fx::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: radial-gradient(
+    var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+    rgba(201, 183, 126, calc(var(--glow-intensity) * 0.8)) 0%,
+    rgba(201, 183, 126, calc(var(--glow-intensity) * 0.4)) 30%,
+    transparent 60%
+  );
+  border-radius: inherit;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 1;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+.card-fx:hover {
+  box-shadow:
+    0 4px 20px rgba(46, 24, 78, 0.4),
+    0 0 30px rgba(201, 183, 126, 0.15);
+}
+
+.card-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 100;
+}

@@ -12,6 +12,8 @@ import { TRABAJOS_IMAGES } from "@/data/trabajos";
 import { ServiceCard } from "@/components/studio/ServiceCard";
 import { ServiceSheet } from "@/components/studio/ServiceSheet";
 import ImageTrail from "@/components/ImageTrail";
+import PixelCard from "@/components/PixelCard";
+import CardFX from "@/components/CardFX";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({
@@ -292,13 +294,14 @@ function Index() {
 
         <div className="mt-8 columns-1 gap-4 sm:mt-10 sm:columns-2 sm:gap-6 lg:columns-3">
           {filtered.map((s) => (
-            <ServiceCard
-              key={s.id}
-              service={s}
-              selected={selected.includes(s.id)}
-              onToggle={() => toggle(s.id)}
-              onOpen={() => setOpenId(s.id)}
-            />
+            <CardFX key={s.id} className="rounded-xl">
+              <ServiceCard
+                service={s}
+                selected={selected.includes(s.id)}
+                onToggle={() => toggle(s.id)}
+                onOpen={() => setOpenId(s.id)}
+              />
+            </CardFX>
           ))}
         </div>
       </section>
@@ -316,12 +319,14 @@ function Index() {
             </p>
           </div>
           <div className="relative mt-10 h-[500px] overflow-hidden rounded-xl border border-border bg-card">
-            <div className="pointer-events-none absolute inset-0 z-0 flex select-none items-center justify-center">
-              <span className="bg-gradient-to-b from-primary/20 to-primary/5 bg-clip-text text-[clamp(4rem,15vw,10rem)] font-bold leading-none tracking-tighter text-transparent blur-[2px] sm:blur-[4px]">
-                Rincón Digital
-              </span>
-            </div>
-            <ImageTrail items={TRABAJOS_IMAGES} variant={1} />
+            <PixelCard variant="default" className="rounded-xl">
+              <div className="pointer-events-none absolute inset-0 z-0 flex select-none items-center justify-center">
+                <span className="bg-gradient-to-b from-primary/20 to-primary/5 bg-clip-text text-[clamp(4rem,15vw,10rem)] font-bold leading-none tracking-tighter text-transparent blur-[2px] sm:blur-[4px]">
+                  Rincón Digital
+                </span>
+              </div>
+              <ImageTrail items={TRABAJOS_IMAGES} variant={1} />
+            </PixelCard>
           </div>
         </div>
       </section>
