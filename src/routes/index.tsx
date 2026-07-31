@@ -268,26 +268,26 @@ function Index() {
       </section>
 
       {/* CATÁLOGO */}
-      <section id="catalogo" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-16">
+      <section id="catalogo" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-12 sm:px-6 sm:py-16">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <p className="eyebrow">Catálogo interactivo</p>
-            <h2 className="mt-4 text-4xl font-semibold">Servicios & muestra de producción</h2>
+            <p className="eyebrow">Catálogo completo</p>
+            <h2 className="mt-4 text-3xl font-semibold sm:text-4xl">Todos los servicios del estudio</h2>
           </div>
           <p className="max-w-sm text-sm text-muted-foreground">
-            Pasa el cursor sobre cada pieza para ver los acabados disponibles. Agrega servicios a tu
-            cotización con el botón <span className="text-primary">+</span>.
+            Toca cada pieza para ver su ficha técnica. Agrega servicios a tu cotización con el botón{" "}
+            <span className="text-primary">+</span>.
           </p>
         </div>
 
-        <div className="mt-10 flex flex-wrap gap-2">
+        <div className="-mx-4 mt-8 flex gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:mt-10 sm:flex-wrap sm:overflow-visible sm:px-0">
           {CATEGORIES.map((c) => (
             <button
               key={c.id}
               type="button"
               onClick={() => setCategory(c.id)}
               className={cn(
-                "rounded-full border px-4 py-2 text-sm transition-colors",
+                "shrink-0 rounded-full border px-4 py-2 text-sm transition-colors",
                 category === c.id
                   ? "border-primary bg-primary text-primary-foreground"
                   : "border-border text-muted-foreground hover:border-primary/50 hover:text-foreground",
@@ -298,7 +298,8 @@ function Index() {
           ))}
         </div>
 
-        <div className="mt-10 columns-1 gap-6 sm:columns-2 lg:columns-3">
+        <div className="mt-8 columns-1 gap-4 sm:mt-10 sm:columns-2 sm:gap-6 lg:columns-3">
+
           {filtered.map((s) => (
             <ServiceCard
               key={s.id}
