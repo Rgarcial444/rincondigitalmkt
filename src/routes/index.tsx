@@ -11,7 +11,7 @@ import { CATEGORIES, MATERIALS, SERVICES, whatsappUrl, type CategoryId } from "@
 import { TRABAJOS_IMAGES } from "@/data/trabajos";
 import { ServiceCard } from "@/components/studio/ServiceCard";
 import { ServiceSheet } from "@/components/studio/ServiceSheet";
-import PixelCard from "@/components/PixelCard";
+import ImageTrail from "@/components/ImageTrail";
 import CardFX from "@/components/CardFX";
 import { cn } from "@/lib/utils";
 
@@ -311,21 +311,20 @@ function Index() {
             </p>
           </div>
           <div className="relative mt-10 h-[520px] overflow-hidden rounded-xl border border-border bg-card">
-            <PixelCard variant="default" className="rounded-xl">
-              <div className="h-full w-full overflow-y-auto p-3">
-                <div className="columns-2 gap-3 sm:columns-3 lg:columns-4">
-                  {TRABAJOS_IMAGES.map((img, i) => (
-                    <img
-                      key={i}
-                      src={img}
-                      alt=""
-                      loading="lazy"
-                      className="mb-3 w-full rounded-lg border border-border/50 object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                  ))}
-                </div>
+            <div className="absolute inset-0 overflow-y-auto p-3">
+              <div className="columns-2 gap-3 sm:columns-3 lg:columns-4">
+                {TRABAJOS_IMAGES.map((img, i) => (
+                  <img
+                    key={i}
+                    src={img}
+                    alt=""
+                    loading="lazy"
+                    className="mb-3 w-full rounded-lg border border-border/50 object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                ))}
               </div>
-            </PixelCard>
+            </div>
+            <ImageTrail items={TRABAJOS_IMAGES} variant={1} />
           </div>
         </div>
       </section>
