@@ -15,17 +15,17 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Rincón Digital | Letreros Luminosos y Letras 3D a Medida" },
+      { title: "Rincón Digital | Letreros Luminosos y Letras 3D y Publicidad" },
       {
         name: "description",
         content:
           "Fabricamos letreros luminosos LED, letras corpóreas 3D, neón a medida y cajas de luz. También impresión, gran formato y rotulación. Cotiza por WhatsApp.",
       },
-      { property: "og:title", content: "Rincón Digital | Letreros Luminosos y Letras 3D" },
+      { property: "og:title", content: "Rincón Digital | Letreros Luminosos y Letras 3D y Publicidad" },
       {
         property: "og:description",
         content:
-          "Especialistas en letreros luminosos LED y letras corpóreas 3D. Catálogo interactivo con fichas técnicas y cotización directa por WhatsApp.",
+          "Fabricamos letreros luminosos LED, letras corpóreas 3D, neón a medida y cajas de luz. También impresión, gran formato y rotulación. Cotiza por WhatsApp.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
