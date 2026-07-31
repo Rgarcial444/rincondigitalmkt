@@ -7,9 +7,11 @@ import luminosoHalo from "@/assets/luminoso-halo.jpg";
 import neonLed from "@/assets/neon-led.jpg";
 import cajaLuz from "@/assets/caja-luz.jpg";
 import letras3d from "@/assets/letras-3d.jpg";
-import { CATEGORIES, MATERIALS, SERVICES, WHATSAPP_NUMBER, type CategoryId } from "@/data/catalog";
+import { CATEGORIES, MATERIALS, SERVICES, whatsappUrl, type CategoryId } from "@/data/catalog";
+import { TRABAJOS_IMAGES } from "@/data/trabajos";
 import { ServiceCard } from "@/components/studio/ServiceCard";
 import { ServiceSheet } from "@/components/studio/ServiceSheet";
+import ImageTrail from "@/components/ImageTrail";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({
@@ -71,7 +73,6 @@ const LUMINOSOS = [
   },
 ];
 
-
 function Index() {
   const [category, setCategory] = useState<CategoryId>("all");
   const [selected, setSelected] = useState<string[]>([]);
@@ -92,12 +93,12 @@ function Index() {
     const names = SERVICES.filter((s) => selected.includes(s.id)).map((s) => `• ${s.title}`);
     const body = [
       "Hola Rincón Digital, me interesa cotizar:",
-      names.length ? names.join("\n") : "• (aún sin seleccionar servicios)",
+      names.length ? names.join("\n") : "(aún sin seleccionar servicios)",
       notes.trim() ? `\nNotas: ${notes.trim()}` : "",
     ]
       .filter(Boolean)
       .join("\n");
-    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(body)}`;
+    return whatsappUrl(body);
   };
 
   return (
@@ -111,6 +112,7 @@ function Index() {
             <a href="#luminosos" className="transition-colors hover:text-foreground">Luminosos & 3D</a>
             <a href="#estudio" className="transition-colors hover:text-foreground">Estudio</a>
             <a href="#catalogo" className="transition-colors hover:text-foreground">Catálogo</a>
+            <a href="#trabajos" className="transition-colors hover:text-foreground">Trabajos</a>
             <a href="#materiales" className="transition-colors hover:text-foreground">Materiales</a>
             <a href="#cotizador" className="transition-colors hover:text-foreground">Cotizador</a>
           </nav>
@@ -210,7 +212,7 @@ function Index() {
             <button
               type="button"
               onClick={() => {
-                setCategory("luminosos");
+                setCategory("all");
                 document.getElementById("catalogo")?.scrollIntoView({ behavior: "smooth" });
               }}
               className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5"
@@ -228,7 +230,6 @@ function Index() {
           </div>
         </div>
       </section>
-
 
       {/* MANIFIESTO */}
       <section id="estudio" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24">
@@ -299,7 +300,6 @@ function Index() {
         </div>
 
         <div className="mt-8 columns-1 gap-4 sm:mt-10 sm:columns-2 sm:gap-6 lg:columns-3">
-
           {filtered.map((s) => (
             <ServiceCard
               key={s.id}
@@ -309,6 +309,26 @@ function Index() {
               onOpen={() => setOpenId(s.id)}
             />
           ))}
+        </div>
+      </section>
+
+      {/* NUESTROS TRABAJOS */}
+      <section id="trabajos" className="scroll-mt-20 border-b border-border py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <p className="eyebrow">Galería de proyectos</p>
+              <h2 className="mt-4 max-w-2xl text-3xl font-semibold sm:text-4xl">
+                Nuestros trabajos
+              </h2>
+            </div>
+            <p className="max-w-sm text-sm text-muted-foreground">
+              Desliza el cursor sobre la galería para ver nuestros proyectos recientes.
+            </p>
+          </div>
+          <div className="relative mt-10 h-[500px] overflow-hidden rounded-xl border border-border bg-card">
+            <ImageTrail items={TRABAJOS_IMAGES} variant={1} />
+          </div>
         </div>
       </section>
 
@@ -386,7 +406,7 @@ function Index() {
               rel="noopener noreferrer"
               className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5"
             >
-              <Send className="size-4" /> Cotizar selección ({selected.length})
+              <Send className="size-4" /> Enviar Selección a WhatsApp ({selected.length})
             </a>
           </div>
         </div>

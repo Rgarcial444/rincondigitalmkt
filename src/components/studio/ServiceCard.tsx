@@ -1,5 +1,6 @@
-import { ArrowUpRight, Check, Plus } from "lucide-react";
+import { ArrowUpRight, Check, MessageCircle, Plus } from "lucide-react";
 import type { Service } from "@/data/catalog";
+import { whatsappUrl } from "@/data/catalog";
 import { cn } from "@/lib/utils";
 
 const ASPECT: Record<Service["aspect"], string> = {
@@ -19,6 +20,10 @@ export function ServiceCard({
   onToggle: () => void;
   onOpen: () => void;
 }) {
+  const waUrl = whatsappUrl(
+    `Hola Rincón Digital, me interesa solicitar una cotización para el servicio de: ${service.title}.`,
+  );
+
   return (
     <article
       className={cn(
@@ -71,7 +76,7 @@ export function ServiceCard({
         </div>
 
         <ul className="space-y-1.5 text-sm text-muted-foreground">
-          {service.bullets.map((b) => (
+          {service.bullets.slice(0, 3).map((b) => (
             <li key={b} className="flex gap-2">
               <span className="mt-2 size-1 shrink-0 rounded-full bg-primary/70" />
               {b}
@@ -79,14 +84,24 @@ export function ServiceCard({
           ))}
         </ul>
 
-        <button
-          type="button"
-          onClick={onOpen}
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-primary transition-colors hover:text-foreground"
-        >
-          Ver detalles
-          <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </button>
+        <div className="flex flex-wrap gap-2">
+          <button
+            type="button"
+            onClick={onOpen}
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-primary transition-colors hover:text-foreground"
+          >
+            Ver detalles
+            <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </button>
+          <a
+            href={waUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-auto inline-flex items-center gap-1.5 rounded-full border border-primary/30 px-3 py-1 text-xs font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+          >
+            <MessageCircle className="size-3.5" /> Cotizar
+          </a>
+        </div>
       </div>
     </article>
   );

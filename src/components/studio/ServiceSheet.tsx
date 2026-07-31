@@ -1,6 +1,7 @@
-import { Check, Plus } from "lucide-react";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { ArrowLeft, Check, MessageCircle, Plus } from "lucide-react";
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import type { Service } from "@/data/catalog";
+import { whatsappUrl } from "@/data/catalog";
 import { cn } from "@/lib/utils";
 
 export function ServiceSheet({
@@ -16,6 +17,17 @@ export function ServiceSheet({
   selected: boolean;
   onToggle: () => void;
 }) {
+  const handleToggle = () => {
+    onToggle();
+    onOpenChange(false);
+  };
+
+  const waUrl = service
+    ? whatsappUrl(
+        `Hola Rincón Digital, me interesa solicitar una cotización para el servicio de: ${service.title}.`,
+      )
+    : "#";
+
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent side="right" className="w-full overflow-y-auto border-border bg-surface sm:max-w-xl">
@@ -29,6 +41,9 @@ export function ServiceSheet({
                 className="h-full w-full object-cover"
               />
               <div className="veil absolute inset-0" />
+              <SheetClose className="absolute left-4 top-4 z-10 flex items-center gap-1.5 rounded-full bg-background/70 px-3 py-1.5 text-xs font-medium text-foreground backdrop-blur-sm transition-colors hover:bg-background/90">
+                <ArrowLeft className="size-3.5" /> Volver
+              </SheetClose>
             </div>
 
             <SheetHeader className="px-0">
@@ -36,7 +51,7 @@ export function ServiceSheet({
               <SheetDescription>{service.summary}</SheetDescription>
             </SheetHeader>
 
-            <div className="space-y-8 pb-10">
+            <div className="space-y-6 pb-10">
               <section className="space-y-3">
                 <p className="eyebrow">Entregables</p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
@@ -75,19 +90,30 @@ export function ServiceSheet({
                 </dl>
               </section>
 
-              <button
-                type="button"
-                onClick={onToggle}
-                className={cn(
-                  "inline-flex w-full items-center justify-center gap-2 rounded-md border px-5 py-3 text-sm font-medium transition-colors",
-                  selected
-                    ? "border-primary bg-primary text-primary-foreground"
-                    : "border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground",
-                )}
-              >
-                {selected ? <Check className="size-4" /> : <Plus className="size-4" />}
-                {selected ? "Agregado a la cotización" : "Agregar a la cotización"}
-              </button>
+              <div className="flex flex-col gap-3">
+                <a
+                  href={waUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5"
+                >
+                  <MessageCircle className="size-4" /> Cotizar este servicio
+                </a>
+
+                <button
+                  type="button"
+                  onClick={handleToggle}
+                  className={cn(
+                    "inline-flex w-full items-center justify-center gap-2 rounded-md border px-5 py-3 text-sm font-medium transition-colors",
+                    selected
+                      ? "border-primary bg-primary/10 text-primary"
+                      : "border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground",
+                  )}
+                >
+                  {selected ? <Check className="size-4" /> : <Plus className="size-4" />}
+                  {selected ? "¡Agregado!" : "Agregar a la cotización"}
+                </button>
+              </div>
             </div>
           </>
         )}

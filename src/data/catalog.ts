@@ -11,25 +11,21 @@ import neonLed from "@/assets/neon-led.jpg";
 import cajaLuz from "@/assets/caja-luz.jpg";
 import letras3d from "@/assets/letras-3d.jpg";
 
-export const WHATSAPP_NUMBER = "527223145340"; // México (52) + 722 314 5340
+export const WHATSAPP_NUMBER = "527223145340";
 
 export const CATEGORIES = [
-  { id: "all", label: "Todo" },
-  { id: "luminosos", label: "Letreros Luminosos & 3D" },
-  { id: "diseno", label: "Diseño & Branding" },
-  { id: "impresion", label: "Impresión Digital & Offset" },
-  { id: "granformato", label: "Gran Formato & Rotulación" },
-  { id: "laser", label: "Corte Láser & 3D" },
-  { id: "sublimacion", label: "Sublimación & Merch" },
+  { id: "all", label: "Todos" },
+  { id: "identidad", label: "Identidad & Impresión Fina" },
+  { id: "espacios", label: "Espacios & Gran Formato" },
+  { id: "especial", label: "Corte 3D & Producción Especial" },
 ] as const;
 
 export type CategoryId = (typeof CATEGORIES)[number]["id"];
 
-
 export type Service = {
   id: string;
   title: string;
-  category: Exclude<CategoryId, "all">;
+  category: CategoryId;
   image: string;
   aspect: "tall" | "wide" | "square";
   summary: string;
@@ -42,7 +38,7 @@ export const SERVICES: Service[] = [
   {
     id: "letras-luminosas",
     title: "Letreros Luminosos LED",
-    category: "luminosos",
+    category: "all",
     image: luminosoHalo,
     aspect: "tall",
     summary:
@@ -62,7 +58,7 @@ export const SERVICES: Service[] = [
   {
     id: "letras-3d",
     title: "Letras Corpóreas 3D",
-    category: "luminosos",
+    category: "especial",
     image: letras3d,
     aspect: "square",
     summary: "Volumetría precisa en acrílico, PVC, MDF o metal para fachadas y muros de marca.",
@@ -81,7 +77,7 @@ export const SERVICES: Service[] = [
   {
     id: "neon-led",
     title: "Neón LED a Medida",
-    category: "luminosos",
+    category: "all",
     image: neonLed,
     aspect: "wide",
     summary: "Neón flexible LED para interiores, negocios y eventos, en cualquier trazo o color.",
@@ -96,7 +92,7 @@ export const SERVICES: Service[] = [
   {
     id: "cajas-luz",
     title: "Cajas de Luz & Anuncios Retroiluminados",
-    category: "luminosos",
+    category: "all",
     image: cajaLuz,
     aspect: "wide",
     summary: "Anuncios de bandera, marquesinas y lightbox con difusión pareja de luz.",
@@ -112,7 +108,7 @@ export const SERVICES: Service[] = [
   {
     id: "diseno-grafico",
     title: "Diseño Gráfico",
-    category: "diseno",
+    category: "identidad",
     image: branding,
     aspect: "tall",
     summary:
@@ -128,7 +124,7 @@ export const SERVICES: Service[] = [
   {
     id: "impresion-digital",
     title: "Impresión Digital",
-    category: "impresion",
+    category: "identidad",
     image: digital,
     aspect: "wide",
     summary: "Tirajes cortos con color estable y acabados finos para papelería corporativa.",
@@ -141,24 +137,9 @@ export const SERVICES: Service[] = [
     ],
   },
   {
-    id: "gran-formato",
-    title: "Impresión en Gran Formato",
-    category: "granformato",
-    image: granformato,
-    aspect: "tall",
-    summary: "Alta resolución en lonas, vinilos y murales de gran superficie.",
-    bullets: ["Lonas, vinilos, carteles y vallas", "Foto lienzos y murales", "Photocalls y backings"],
-    finishes: ["Lona frontlit", "Vinil texturizado", "Laminado mate", "Ojillos y bastidor"],
-    specs: [
-      { label: "Resolución", value: "Hasta 1440 dpi" },
-      { label: "Ancho máx.", value: "3.20 m sin costura" },
-      { label: "Tintas", value: "Ecosolvente / látex resistente a UV" },
-    ],
-  },
-  {
     id: "offset",
     title: "Impresión Offset",
-    category: "impresion",
+    category: "identidad",
     image: offset,
     aspect: "wide",
     summary: "Grandes volúmenes con consistencia cromática y costo por pieza optimizado.",
@@ -171,9 +152,24 @@ export const SERVICES: Service[] = [
     ],
   },
   {
+    id: "gran-formato",
+    title: "Impresión en Gran Formato",
+    category: "espacios",
+    image: granformato,
+    aspect: "tall",
+    summary: "Alta resolución en lonas, vinilos y murales de gran superficie.",
+    bullets: ["Lonas, vinilos, carteles y vallas", "Foto lienzos y murales", "Photocalls y backings"],
+    finishes: ["Lona frontlit", "Vinil texturizado", "Laminado mate", "Ojillos y bastidor"],
+    specs: [
+      { label: "Resolución", value: "Hasta 1440 dpi" },
+      { label: "Ancho máx.", value: "3.20 m sin costura" },
+      { label: "Tintas", value: "Ecosolvente / látex resistente a UV" },
+    ],
+  },
+  {
     id: "vinilo-recorte",
     title: "Vinilo de Recorte & Rotulación",
-    category: "granformato",
+    category: "espacios",
     image: rotulacion,
     aspect: "square",
     summary: "Rotulación comercial y vehicular con corte de precisión e instalación profesional.",
@@ -188,7 +184,7 @@ export const SERVICES: Service[] = [
   {
     id: "senalizacion",
     title: "Cartelería & Señalización",
-    category: "granformato",
+    category: "espacios",
     image: senalizacion,
     aspect: "wide",
     summary: "Señalética normativa para protección civil y seguridad laboral.",
@@ -203,7 +199,7 @@ export const SERVICES: Service[] = [
   {
     id: "corte-laser",
     title: "Corte Láser & Letras Corpóreas",
-    category: "laser",
+    category: "especial",
     image: laser,
     aspect: "tall",
     summary: "Anuncios corpóreos y piezas caladas de alta precisión en múltiples materiales.",
@@ -218,7 +214,7 @@ export const SERVICES: Service[] = [
   {
     id: "sublimacion",
     title: "Sublimación, Estampado & Promocionales",
-    category: "sublimacion",
+    category: "especial",
     image: merch,
     aspect: "square",
     summary: "Textiles, regalos personalizados y souvenirs con acabado durable.",
@@ -242,3 +238,7 @@ export const MATERIALS = [
   { name: "Opalina 225g", note: "Diplomas y credenciales" },
   { name: "Poliéster Sublimable", note: "Textiles y merch" },
 ];
+
+export function whatsappUrl(text: string): string {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+}
