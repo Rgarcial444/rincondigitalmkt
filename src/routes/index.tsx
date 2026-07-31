@@ -17,17 +17,15 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Rincón Digital | Letreros Luminosos y Letras 3D y Publicidad" },
+      { title: "Rincón Digital | Letreros Luminosos y Letras 3D" },
       {
         name: "description",
-        content:
-          "Fabricamos letreros luminosos LED, letras corpóreas 3D, neón a medida y cajas de luz. También impresión, gran formato y rotulación. Cotiza por WhatsApp.",
+        content: "Fabricamos letreros LED, letras 3D, neón, impresión y gran formato. Cotiza por WhatsApp.",
       },
-      { property: "og:title", content: "Rincón Digital | Letreros Luminosos y Letras 3D y Publicidad" },
+      { property: "og:title", content: "Rincón Digital | Letreros Luminosos y Letras 3D" },
       {
         property: "og:description",
-        content:
-          "Fabricamos letreros luminosos LED, letras corpóreas 3D, neón a medida y cajas de luz. También impresión, gran formato y rotulación. Cotiza por WhatsApp.",
+        content: "Fabricamos letreros LED, letras 3D, neón, impresión y gran formato. Cotiza por WhatsApp.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -37,16 +35,16 @@ export const Route = createFileRoute("/")({
 });
 
 const PILLARS = [
-  { icon: Sparkles, title: "Vanguardia", text: "Tecnología y técnica al servicio de una idea bien resuelta." },
+  { icon: Sparkles, title: "Vanguardia", text: "Tecnología al servicio de una buena idea." },
   { icon: Eye, title: "Apertura", text: "Escuchamos el proyecto antes de proponer el formato." },
-  { icon: Scale, title: "Sentido Común", text: "Soluciones proporcionales al objetivo y al presupuesto." },
+  { icon: Scale, title: "Sentido Común", text: "Soluciones justas para tu objetivo y presupuesto." },
 ];
 
 const LUMINOSOS = [
   {
     id: "letras-luminosas",
     title: "Letreros Luminosos LED",
-    text: "Letras con cara iluminada o halo retroiluminado para fachadas que se leen de noche.",
+    text: "Letras iluminadas o con halo retroiluminado para fachadas que se leen de noche.",
     image: luminosoHalo,
     span: "sm:col-span-2 sm:row-span-2",
   },
@@ -108,12 +106,10 @@ function Index() {
           <a href="#top" className="font-display text-sm font-semibold tracking-tight">
             Rincón<span className="text-primary">.</span>Digital
           </a>
-          <nav className="hidden gap-6 text-sm text-muted-foreground lg:flex xl:gap-8">
-            <a href="#luminosos" className="transition-colors hover:text-foreground">Luminosos & 3D</a>
-            <a href="#estudio" className="transition-colors hover:text-foreground">Estudio</a>
+          <nav className="hidden gap-5 text-sm text-muted-foreground lg:flex">
+            <a href="#luminosos" className="transition-colors hover:text-foreground">Luminosos</a>
             <a href="#catalogo" className="transition-colors hover:text-foreground">Catálogo</a>
             <a href="#trabajos" className="transition-colors hover:text-foreground">Trabajos</a>
-            <a href="#materiales" className="transition-colors hover:text-foreground">Materiales</a>
             <a href="#cotizador" className="transition-colors hover:text-foreground">Cotizador</a>
           </nav>
           <a
@@ -131,27 +127,26 @@ function Index() {
       <section id="top" className="relative isolate flex min-h-[100svh] items-end overflow-hidden">
         <img
           src={heroImage}
-          alt="Letrero luminoso con letras corpóreas LED fabricado por Rincón Digital"
+          alt=""
           width={1920}
           height={1088}
           className="absolute inset-0 -z-10 h-full w-full object-cover opacity-70"
         />
         <div className="veil absolute inset-0 -z-10" />
         <div className="mx-auto w-full max-w-7xl px-4 pb-16 pt-28 sm:px-6 sm:pb-20 sm:pt-32">
-          <p className="eyebrow">Letreros Luminosos · Letras 3D · Neón LED · Cajas de Luz</p>
-          <h1 className="mt-5 max-w-4xl text-balance text-4xl font-semibold leading-[1.02] sm:text-5xl sm:leading-[0.98] md:text-6xl lg:text-7xl">
-            Letreros luminosos y letras 3D que hacen visible tu marca de noche.
+          <p className="eyebrow">Letreros Luminosos · Letras 3D · Neón · Cajas de Luz</p>
+          <h1 className="mt-5 max-w-3xl text-balance text-4xl font-semibold leading-[1.02] sm:text-5xl sm:leading-[0.98] md:text-6xl lg:text-7xl">
+            Tu marca visible de noche.
           </h1>
-          <p className="mt-5 max-w-xl text-base text-muted-foreground sm:mt-6 sm:text-lg">
-            Fabricamos e instalamos anuncios iluminados con LED, letras corpóreas y neón a medida.
-            Y todo lo demás del estudio gráfico bajo el mismo techo.
+          <p className="mt-4 max-w-lg text-base text-muted-foreground sm:text-lg">
+            Fabricamos e instalamos anuncios iluminados, letras corpóreas y neón a medida.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
               href="#luminosos"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5"
             >
-              Ver Letreros Luminosos <ArrowRight className="size-4" />
+              Ver Luminosos <ArrowRight className="size-4" />
             </a>
             <a
               href={quoteUrl()}
@@ -165,19 +160,18 @@ function Index() {
         </div>
       </section>
 
-      {/* LUMINOSOS — PRODUCTO PRINCIPAL */}
+      {/* LUMINOSOS */}
       <section id="luminosos" className="scroll-mt-20 border-b border-border bg-surface py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
-              <p className="eyebrow">Nuestro producto principal</p>
+              <p className="eyebrow">Nuestro fuerte</p>
               <h2 className="mt-4 max-w-2xl text-3xl font-semibold leading-tight sm:text-4xl md:text-5xl">
-                Letreros luminosos & letras corpóreas 3D
+                Letreros luminosos & letras 3D
               </h2>
             </div>
             <p className="max-w-sm text-sm text-muted-foreground">
-              Diseño, fabricación, iluminación LED e instalación. Un solo proveedor de principio a
-              fin, con garantía sobre el anuncio y su electrónica.
+              Diseño, fabricación e instalación. Un solo proveedor, con garantía.
             </p>
           </div>
 
@@ -194,7 +188,7 @@ function Index() {
               >
                 <img
                   src={item.image}
-                  alt={item.title}
+                  alt=""
                   loading="lazy"
                   className="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
@@ -225,17 +219,17 @@ function Index() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium transition-colors hover:border-primary/60 hover:text-primary"
             >
-              Cotizar mi letrero <MessageCircle className="size-4" />
+              Cotizar <MessageCircle className="size-4" />
             </a>
           </div>
         </div>
       </section>
 
       {/* MANIFIESTO */}
-      <section id="estudio" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24">
+      <section id="estudio" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-16 sm:py-24">
         <div className="grid gap-8 lg:grid-cols-[1fr_1.3fr] lg:gap-12">
           <div>
-            <p className="eyebrow">Manifiesto del estudio</p>
+            <p className="eyebrow">Manifiesto</p>
             <h2 className="mt-4 text-3xl font-semibold leading-tight sm:text-4xl">
               Pensar la pieza antes de fabricarla.
             </h2>
@@ -245,16 +239,14 @@ function Index() {
               <Compass className="size-5 text-primary" />
               <h3 className="mt-4 text-lg font-semibold">Misión</h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                Traducir ideas en piezas gráficas impecables, con procesos responsables y tiempos
-                que respetan el proyecto del cliente.
+                Ideas en piezas impecables, con procesos responsables y tiempos que respetan tu proyecto.
               </p>
             </div>
             <div className="hover-glow rounded-xl border border-border bg-card p-6">
               <Eye className="size-5 text-primary" />
               <h3 className="mt-4 text-lg font-semibold">Visión</h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                Ser el referente regional en comunicación visual sostenible, uniendo diseño,
-                tecnología de impresión y producción especial bajo un mismo techo.
+                Ser el referente regional en comunicación visual, uniendo diseño, tecnología y producción.
               </p>
             </div>
             {PILLARS.map((p) => (
@@ -272,12 +264,11 @@ function Index() {
       <section id="catalogo" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-12 sm:px-6 sm:py-16">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <p className="eyebrow">Catálogo completo</p>
-            <h2 className="mt-4 text-3xl font-semibold sm:text-4xl">Todos los servicios del estudio</h2>
+            <p className="eyebrow">Catálogo</p>
+            <h2 className="mt-4 text-3xl font-semibold sm:text-4xl">Servicios del estudio</h2>
           </div>
           <p className="max-w-sm text-sm text-muted-foreground">
-            Toca cada pieza para ver su ficha técnica. Agrega servicios a tu cotización con el botón{" "}
-            <span className="text-primary">+</span>.
+            Toca cada pieza para ver su ficha. <span className="text-primary">+</span> para agregar a tu cotización.
           </p>
         </div>
 
@@ -312,18 +303,16 @@ function Index() {
         </div>
       </section>
 
-      {/* NUESTROS TRABAJOS */}
+      {/* TRABAJOS */}
       <section id="trabajos" className="scroll-mt-20 border-b border-border py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
-              <p className="eyebrow">Galería de proyectos</p>
-              <h2 className="mt-4 max-w-2xl text-3xl font-semibold sm:text-4xl">
-                Nuestros trabajos
-              </h2>
+              <p className="eyebrow">Galería</p>
+              <h2 className="mt-4 max-w-2xl text-3xl font-semibold sm:text-4xl">Nuestros trabajos</h2>
             </div>
             <p className="max-w-sm text-sm text-muted-foreground">
-              Desliza el cursor sobre la galería para ver nuestros proyectos recientes.
+              Desliza el cursor sobre la galería.
             </p>
           </div>
           <div className="relative mt-10 h-[500px] overflow-hidden rounded-xl border border-border bg-card">
@@ -340,9 +329,9 @@ function Index() {
       {/* MATERIALES */}
       <section id="materiales" className="scroll-mt-20 border-y border-border bg-surface py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <p className="eyebrow">Estudio de materiales & acabados</p>
+          <p className="eyebrow">Materiales</p>
           <h2 className="mt-4 max-w-2xl text-3xl font-semibold sm:text-4xl">
-            Acrílico, aluminio, LED y sustratos con los que trabajamos todos los días.
+            Sustratos con los que trabajamos.
           </h2>
           <div className="mt-8 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:mt-12 sm:grid-cols-2 lg:grid-cols-4">
             {MATERIALS.map((m) => (
@@ -359,13 +348,12 @@ function Index() {
       <section id="cotizador" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
           <div>
-            <p className="eyebrow">Cotizador rápido</p>
+            <p className="eyebrow">Cotizador</p>
             <h2 className="mt-4 text-3xl font-semibold leading-tight sm:text-4xl">
-              Arma tu proyecto y envíalo por WhatsApp.
+              Arma tu proyecto y recibe precio por WhatsApp.
             </h2>
             <p className="mt-4 text-sm text-muted-foreground">
-              Selecciona los servicios que te interesan, agrega notas (medidas, cantidades, fechas) y
-              te respondemos con una propuesta puntual.
+              Selecciona servicios, agrega notas y envíanos tu solicitud.
             </p>
           </div>
 
@@ -394,14 +382,14 @@ function Index() {
             </div>
 
             <label htmlFor="notas" className="eyebrow mt-8 block">
-              Notas del proyecto
+              Notas
             </label>
             <textarea
               id="notas"
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              rows={4}
-              placeholder="Ej. Lona 3×2 m con ojillos + 2 letras corpóreas iluminadas, entrega en 10 días."
+              rows={3}
+              placeholder="Medidas, cantidades, fechas..."
               className="mt-3 w-full resize-none rounded-md border border-input bg-background px-3 py-2.5 text-sm outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary"
             />
 
@@ -411,7 +399,7 @@ function Index() {
               rel="noopener noreferrer"
               className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5"
             >
-              <Send className="size-4" /> Enviar Selección a WhatsApp ({selected.length})
+              <Send className="size-4" /> Enviar a WhatsApp ({selected.length})
             </a>
           </div>
         </div>
@@ -420,24 +408,23 @@ function Index() {
       <footer className="border-t border-border py-10 sm:py-12">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 text-sm text-muted-foreground sm:px-6">
           <p className="font-display text-foreground">Rincón Digital</p>
-          <p>Letreros Luminosos · Letras 3D · Neón LED · Impresión & Gran Formato</p>
+          <p>Letreros Luminosos · Letras 3D · Impresión & Gran Formato</p>
         </div>
       </footer>
 
-      {/* Barra flotante de selección */}
       {selected.length > 0 && (
         <div className="fixed inset-x-0 bottom-0 z-40 px-3 pb-3 sm:px-4 sm:pb-4">
           <div className="glass-bar mx-auto flex max-w-3xl items-center justify-between gap-3 rounded-full border px-4 py-2.5 sm:px-5 sm:py-3">
             <p className="text-xs sm:text-sm">
               <span className="font-semibold text-primary">{selected.length}</span> servicio
-              {selected.length > 1 ? "s" : ""} en tu cotización
+              {selected.length > 1 ? "s" : ""}
             </p>
             <div className="flex items-center gap-2">
               <button
                 type="button"
                 onClick={() => setSelected([])}
                 className="rounded-full p-2 text-muted-foreground transition-colors hover:text-foreground"
-                aria-label="Limpiar selección"
+                aria-label="Limpiar"
               >
                 <X className="size-4" />
               </button>
