@@ -7,7 +7,7 @@ import senalizacion from "@/assets/senalizacion.jpg";
 import laser from "@/assets/laser.jpg";
 import merch from "@/assets/merch.jpg";
 
-export const WHATSAPP_NUMBER = "5210000000000"; // <- reemplazar por el número real (formato internacional, sin +)
+export const WHATSAPP_NUMBER = "527223145340"; // México (52) + 722 314 5340
 
 export const CATEGORIES = [
   { id: "all", label: "Todo" },
