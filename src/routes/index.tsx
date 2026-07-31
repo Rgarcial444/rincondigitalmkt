@@ -392,18 +392,18 @@ function Index() {
         </div>
       </section>
 
-      <footer className="border-t border-border py-12">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 text-sm text-muted-foreground">
+      <footer className="border-t border-border py-10 sm:py-12">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 text-sm text-muted-foreground sm:px-6">
           <p className="font-display text-foreground">Rincón Digital</p>
-          <p>Diseño · Impresión · Gran Formato · Producción Especial</p>
+          <p>Letreros Luminosos · Letras 3D · Neón LED · Impresión & Gran Formato</p>
         </div>
       </footer>
 
       {/* Barra flotante de selección */}
       {selected.length > 0 && (
-        <div className="fixed inset-x-0 bottom-0 z-40 px-4 pb-4">
-          <div className="glass-bar mx-auto flex max-w-3xl items-center justify-between gap-4 rounded-full border px-5 py-3">
-            <p className="text-sm">
+        <div className="fixed inset-x-0 bottom-0 z-40 px-3 pb-3 sm:px-4 sm:pb-4">
+          <div className="glass-bar mx-auto flex max-w-3xl items-center justify-between gap-3 rounded-full border px-4 py-2.5 sm:px-5 sm:py-3">
+            <p className="text-xs sm:text-sm">
               <span className="font-semibold text-primary">{selected.length}</span> servicio
               {selected.length > 1 ? "s" : ""} en tu cotización
             </p>
