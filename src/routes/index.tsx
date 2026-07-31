@@ -1,8 +1,12 @@
 import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Compass, Eye, MessageCircle, Scale, Send, Sparkles, X } from "lucide-react";
+import { ArrowRight, Compass, Eye, Lightbulb, MessageCircle, Scale, Send, Sparkles, X } from "lucide-react";
 
 import heroImage from "@/assets/hero.jpg";
+import luminosoHalo from "@/assets/luminoso-halo.jpg";
+import neonLed from "@/assets/neon-led.jpg";
+import cajaLuz from "@/assets/caja-luz.jpg";
+import letras3d from "@/assets/letras-3d.jpg";
 import { CATEGORIES, MATERIALS, SERVICES, WHATSAPP_NUMBER, type CategoryId } from "@/data/catalog";
 import { ServiceCard } from "@/components/studio/ServiceCard";
 import { ServiceSheet } from "@/components/studio/ServiceSheet";
@@ -11,17 +15,17 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Rincón Digital | Catálogo de Impresión, Rotulación y Diseño" },
+      { title: "Rincón Digital | Letreros Luminosos y Letras 3D a Medida" },
       {
         name: "description",
         content:
-          "Estudio de diseño, impresión digital y offset, gran formato, rotulación, corte láser y sublimación. Explora el catálogo y cotiza por WhatsApp.",
+          "Fabricamos letreros luminosos LED, letras corpóreas 3D, neón a medida y cajas de luz. También impresión, gran formato y rotulación. Cotiza por WhatsApp.",
       },
-      { property: "og:title", content: "Rincón Digital | Catálogo Digital del Estudio" },
+      { property: "og:title", content: "Rincón Digital | Letreros Luminosos y Letras 3D" },
       {
         property: "og:description",
         content:
-          "Diseño, gran formato, señalización y producción especial. Catálogo interactivo con fichas técnicas y cotización directa.",
+          "Especialistas en letreros luminosos LED y letras corpóreas 3D. Catálogo interactivo con fichas técnicas y cotización directa por WhatsApp.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -35,6 +39,38 @@ const PILLARS = [
   { icon: Eye, title: "Apertura", text: "Escuchamos el proyecto antes de proponer el formato." },
   { icon: Scale, title: "Sentido Común", text: "Soluciones proporcionales al objetivo y al presupuesto." },
 ];
+
+const LUMINOSOS = [
+  {
+    id: "letras-luminosas",
+    title: "Letreros Luminosos LED",
+    text: "Letras con cara iluminada o halo retroiluminado para fachadas que se leen de noche.",
+    image: luminosoHalo,
+    span: "sm:col-span-2 sm:row-span-2",
+  },
+  {
+    id: "letras-3d",
+    title: "Letras Corpóreas 3D",
+    text: "Volumetría en acrílico, PVC o metal con acabados premium.",
+    image: letras3d,
+    span: "",
+  },
+  {
+    id: "neon-led",
+    title: "Neón LED a Medida",
+    text: "Trazos y logotipos en neón flexible, en el color que pidas.",
+    image: neonLed,
+    span: "",
+  },
+  {
+    id: "cajas-luz",
+    title: "Cajas de Luz",
+    text: "Anuncios de bandera y marquesinas con luz pareja.",
+    image: cajaLuz,
+    span: "sm:col-span-2",
+  },
+];
+
 
 function Index() {
   const [category, setCategory] = useState<CategoryId>("all");
