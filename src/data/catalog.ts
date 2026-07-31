@@ -6,11 +6,16 @@ import rotulacion from "@/assets/rotulacion.jpg";
 import senalizacion from "@/assets/senalizacion.jpg";
 import laser from "@/assets/laser.jpg";
 import merch from "@/assets/merch.jpg";
+import luminosoHalo from "@/assets/luminoso-halo.jpg";
+import neonLed from "@/assets/neon-led.jpg";
+import cajaLuz from "@/assets/caja-luz.jpg";
+import letras3d from "@/assets/letras-3d.jpg";
 
 export const WHATSAPP_NUMBER = "527223145340"; // México (52) + 722 314 5340
 
 export const CATEGORIES = [
   { id: "all", label: "Todo" },
+  { id: "luminosos", label: "Letreros Luminosos & 3D" },
   { id: "diseno", label: "Diseño & Branding" },
   { id: "impresion", label: "Impresión Digital & Offset" },
   { id: "granformato", label: "Gran Formato & Rotulación" },
@@ -19,6 +24,7 @@ export const CATEGORIES = [
 ] as const;
 
 export type CategoryId = (typeof CATEGORIES)[number]["id"];
+
 
 export type Service = {
   id: string;
