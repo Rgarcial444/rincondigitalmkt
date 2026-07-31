@@ -103,11 +103,12 @@ function Index() {
   return (
     <div className="min-h-screen">
       <header className="glass-bar fixed inset-x-0 top-0 z-40">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
           <a href="#top" className="font-display text-sm font-semibold tracking-tight">
             Rincón<span className="text-primary">.</span>Digital
           </a>
-          <nav className="hidden gap-8 text-sm text-muted-foreground md:flex">
+          <nav className="hidden gap-6 text-sm text-muted-foreground lg:flex xl:gap-8">
+            <a href="#luminosos" className="transition-colors hover:text-foreground">Luminosos & 3D</a>
             <a href="#estudio" className="transition-colors hover:text-foreground">Estudio</a>
             <a href="#catalogo" className="transition-colors hover:text-foreground">Catálogo</a>
             <a href="#materiales" className="transition-colors hover:text-foreground">Materiales</a>
@@ -117,7 +118,7 @@ function Index() {
             href={quoteUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-primary/50 px-4 py-2 text-xs font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+            className="inline-flex shrink-0 items-center gap-2 rounded-full border border-primary/50 px-3 py-2 text-xs font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground sm:px-4"
           >
             <MessageCircle className="size-3.5" /> Cotizar
           </a>
@@ -125,42 +126,109 @@ function Index() {
       </header>
 
       {/* HERO */}
-      <section id="top" className="relative isolate flex min-h-screen items-end overflow-hidden">
+      <section id="top" className="relative isolate flex min-h-[100svh] items-end overflow-hidden">
         <img
           src={heroImage}
-          alt="Taller de impresión y diseño de Rincón Digital"
+          alt="Letrero luminoso con letras corpóreas LED fabricado por Rincón Digital"
           width={1920}
-          height={1080}
-          className="absolute inset-0 -z-10 h-full w-full object-cover opacity-60"
+          height={1088}
+          className="absolute inset-0 -z-10 h-full w-full object-cover opacity-70"
         />
         <div className="veil absolute inset-0 -z-10" />
-        <div className="mx-auto w-full max-w-7xl px-6 pb-20 pt-32">
-          <p className="eyebrow">Diseño · Gran Formato · Señalización · Producción Especial</p>
-          <h1 className="mt-6 max-w-4xl text-balance text-5xl font-semibold leading-[0.95] md:text-7xl">
-            Oficio gráfico para comunicar con precisión, permanencia y sentido.
+        <div className="mx-auto w-full max-w-7xl px-4 pb-16 pt-28 sm:px-6 sm:pb-20 sm:pt-32">
+          <p className="eyebrow">Letreros Luminosos · Letras 3D · Neón LED · Cajas de Luz</p>
+          <h1 className="mt-5 max-w-4xl text-balance text-4xl font-semibold leading-[1.02] sm:text-5xl sm:leading-[0.98] md:text-6xl lg:text-7xl">
+            Letreros luminosos y letras 3D que hacen visible tu marca de noche.
           </h1>
-          <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-            Un estudio de impresión y diseño donde cada sustrato, acabado y milímetro se decide con
-            criterio. Comunicación sostenible, producción de vanguardia.
+          <p className="mt-5 max-w-xl text-base text-muted-foreground sm:mt-6 sm:text-lg">
+            Fabricamos e instalamos anuncios iluminados con LED, letras corpóreas y neón a medida.
+            Y todo lo demás del estudio gráfico bajo el mismo techo.
           </p>
-          <div className="mt-10 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap">
             <a
-              href="#catalogo"
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5"
+              href="#luminosos"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5"
             >
-              Explorar Catálogo <ArrowRight className="size-4" />
+              Ver Letreros Luminosos <ArrowRight className="size-4" />
             </a>
             <a
               href={quoteUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium transition-colors hover:border-primary/60 hover:text-primary"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium transition-colors hover:border-primary/60 hover:text-primary"
             >
-              Solicitar Cotización Directa <MessageCircle className="size-4" />
+              Cotizar por WhatsApp <MessageCircle className="size-4" />
             </a>
           </div>
         </div>
       </section>
+
+      {/* LUMINOSOS — PRODUCTO PRINCIPAL */}
+      <section id="luminosos" className="scroll-mt-20 border-b border-border bg-surface py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <p className="eyebrow">Nuestro producto principal</p>
+              <h2 className="mt-4 max-w-2xl text-3xl font-semibold leading-tight sm:text-4xl md:text-5xl">
+                Letreros luminosos & letras corpóreas 3D
+              </h2>
+            </div>
+            <p className="max-w-sm text-sm text-muted-foreground">
+              Diseño, fabricación, iluminación LED e instalación. Un solo proveedor de principio a
+              fin, con garantía sobre el anuncio y su electrónica.
+            </p>
+          </div>
+
+          <div className="mt-10 grid auto-rows-[210px] grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-5 lg:auto-rows-[240px]">
+            {LUMINOSOS.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setOpenId(item.id)}
+                className={cn(
+                  "group hover-glow relative isolate block overflow-hidden rounded-xl border border-border text-left",
+                  item.span,
+                )}
+              >
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  loading="lazy"
+                  className="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="veil absolute inset-0 -z-10" />
+                <div className="flex h-full flex-col justify-end p-5">
+                  <Lightbulb className="mb-3 size-5 text-primary" />
+                  <h3 className="text-lg font-semibold sm:text-xl">{item.title}</h3>
+                  <p className="mt-1.5 max-w-sm text-sm text-muted-foreground">{item.text}</p>
+                </div>
+              </button>
+            ))}
+          </div>
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <button
+              type="button"
+              onClick={() => {
+                setCategory("luminosos");
+                document.getElementById("catalogo")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5"
+            >
+              Ver fichas técnicas <ArrowRight className="size-4" />
+            </button>
+            <a
+              href={quoteUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium transition-colors hover:border-primary/60 hover:text-primary"
+            >
+              Cotizar mi letrero <MessageCircle className="size-4" />
+            </a>
+          </div>
+        </div>
+      </section>
+
 
       {/* MANIFIESTO */}
       <section id="estudio" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24">
