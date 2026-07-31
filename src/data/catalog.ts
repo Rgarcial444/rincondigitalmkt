@@ -1,0 +1,168 @@
+import branding from "@/assets/branding.jpg";
+import digital from "@/assets/digital.jpg";
+import granformato from "@/assets/granformato.jpg";
+import offset from "@/assets/offset.jpg";
+import rotulacion from "@/assets/rotulacion.jpg";
+import senalizacion from "@/assets/senalizacion.jpg";
+import laser from "@/assets/laser.jpg";
+import merch from "@/assets/merch.jpg";
+
+export const WHATSAPP_NUMBER = "5210000000000"; // <- reemplazar por el número real (formato internacional, sin +)
+
+export const CATEGORIES = [
+  { id: "all", label: "Todo" },
+  { id: "diseno", label: "Diseño & Branding" },
+  { id: "impresion", label: "Impresión Digital & Offset" },
+  { id: "granformato", label: "Gran Formato & Rotulación" },
+  { id: "laser", label: "Corte Láser & 3D" },
+  { id: "sublimacion", label: "Sublimación & Merch" },
+] as const;
+
+export type CategoryId = (typeof CATEGORIES)[number]["id"];
+
+export type Service = {
+  id: string;
+  title: string;
+  category: Exclude<CategoryId, "all">;
+  image: string;
+  aspect: "tall" | "wide" | "square";
+  summary: string;
+  bullets: string[];
+  finishes: string[];
+  specs: { label: string; value: string }[];
+};
+
+export const SERVICES: Service[] = [
+  {
+    id: "diseno-grafico",
+    title: "Diseño Gráfico",
+    category: "diseno",
+    image: branding,
+    aspect: "tall",
+    summary:
+      "Identidad visual con composición sólida y piezas profesionales listas para producción.",
+    bullets: ["Identidad visual y manuales de marca", "Composición y retícula editorial", "Piezas listas para prensa"],
+    finishes: ["Manual de marca", "Archivos vectoriales", "Preprensa CMYK"],
+    specs: [
+      { label: "Entregables", value: "Logotipo, paleta, tipografías, aplicaciones" },
+      { label: "Formatos", value: "AI, PDF/X, SVG, PNG" },
+      { label: "Tiempo estimado", value: "5 a 12 días hábiles" },
+    ],
+  },
+  {
+    id: "impresion-digital",
+    title: "Impresión Digital",
+    category: "impresion",
+    image: digital,
+    aspect: "wide",
+    summary: "Tirajes cortos con color estable y acabados finos para papelería corporativa.",
+    bullets: ["Tabloides y autoadheribles", "Couché, diplomas y credenciales", "Papelería corporativa completa"],
+    finishes: ["Brillante", "Mate", "Autoadherible", "Suaje"],
+    specs: [
+      { label: "Sustratos", value: "Couché 130–350g, bond, opalina, adherible" },
+      { label: "Formato máx.", value: "33 × 48 cm (tabloide extendido)" },
+      { label: "Tiraje", value: "Desde 1 pieza" },
+    ],
+  },
+  {
+    id: "gran-formato",
+    title: "Impresión en Gran Formato",
+    category: "granformato",
+    image: granformato,
+    aspect: "tall",
+    summary: "Alta resolución en lonas, vinilos y murales de gran superficie.",
+    bullets: ["Lonas, vinilos, carteles y vallas", "Foto lienzos y murales", "Photocalls y backings"],
+    finishes: ["Lona frontlit", "Vinil texturizado", "Laminado mate", "Ojillos y bastidor"],
+    specs: [
+      { label: "Resolución", value: "Hasta 1440 dpi" },
+      { label: "Ancho máx.", value: "3.20 m sin costura" },
+      { label: "Tintas", value: "Ecosolvente / látex resistente a UV" },
+    ],
+  },
+  {
+    id: "offset",
+    title: "Impresión Offset",
+    category: "impresion",
+    image: offset,
+    aspect: "wide",
+    summary: "Grandes volúmenes con consistencia cromática y costo por pieza optimizado.",
+    bullets: ["Revistas, folletos y flyers", "Carpetas, cajas y etiquetas", "Agendas y encuadernados"],
+    finishes: ["Barniz UV", "Laminado mate/brillante", "Hot stamping", "Suaje y pegado"],
+    specs: [
+      { label: "Tiraje mínimo", value: "500 piezas" },
+      { label: "Colores", value: "CMYK + tintas directas Pantone" },
+      { label: "Encuadernación", value: "Grapa, hotmelt, wire-o" },
+    ],
+  },
+  {
+    id: "vinilo-recorte",
+    title: "Vinilo de Recorte & Rotulación",
+    category: "granformato",
+    image: rotulacion,
+    aspect: "square",
+    summary: "Rotulación comercial y vehicular con corte de precisión e instalación profesional.",
+    bullets: ["Rotulación comercial de fachadas", "Rotulación vehicular integral", "Microperforado y esmerilado"],
+    finishes: ["Vinil mate", "Vinil brillante", "Esmerilado", "Reflejante"],
+    specs: [
+      { label: "Durabilidad", value: "3 a 7 años en exterior" },
+      { label: "Instalación", value: "Incluida en zona metropolitana" },
+      { label: "Aplicación", value: "Cristal, lámina, muro liso" },
+    ],
+  },
+  {
+    id: "senalizacion",
+    title: "Cartelería & Señalización",
+    category: "granformato",
+    image: senalizacion,
+    aspect: "wide",
+    summary: "Señalética normativa para protección civil y seguridad laboral.",
+    bullets: ["Protección civil y rutas de evacuación", "Normativas de seguridad laboral", "Señalética arquitectónica"],
+    finishes: ["PVC 3mm", "Acrílico", "Aluminio", "Fotoluminiscente"],
+    specs: [
+      { label: "Normativa", value: "NOM-003-SEGOB / NOM-026-STPS" },
+      { label: "Sustratos", value: "Trovicel, acrílico, aluminio compuesto" },
+      { label: "Montaje", value: "Adhesivo estructural o tornillería" },
+    ],
+  },
+  {
+    id: "corte-laser",
+    title: "Corte Láser & Letras Corpóreas",
+    category: "laser",
+    image: laser,
+    aspect: "tall",
+    summary: "Anuncios corpóreos y piezas caladas de alta precisión en múltiples materiales.",
+    bullets: ["Letras corpóreas con o sin luz", "Piezas caladas y grabado", "Prototipos y volumetría 3D"],
+    finishes: ["MDF corte láser", "Acrílico pulido", "Trovicel 3–19mm", "Iluminación LED"],
+    specs: [
+      { label: "Tolerancia", value: "± 0.2 mm" },
+      { label: "Espesores", value: "1 mm a 19 mm" },
+      { label: "Área de corte", value: "130 × 90 cm" },
+    ],
+  },
+  {
+    id: "sublimacion",
+    title: "Sublimación, Estampado & Promocionales",
+    category: "sublimacion",
+    image: merch,
+    aspect: "square",
+    summary: "Textiles, regalos personalizados y souvenirs con acabado durable.",
+    bullets: ["Textiles y uniformes", "Regalos personalizados y souvenirs", "Herrería publicitaria"],
+    finishes: ["Sublimado full color", "DTF", "Vinil textil", "Grabado láser"],
+    specs: [
+      { label: "Textiles", value: "Poliéster, mezclas, algodón (DTF)" },
+      { label: "Mínimo", value: "1 pieza en sublimación" },
+      { label: "Durabilidad", value: "Resistente a lavado industrial" },
+    ],
+  },
+];
+
+export const MATERIALS = [
+  { name: "Couché 300g", note: "Papelería premium y portadas" },
+  { name: "Trovicel 3mm", note: "Señalética rígida de interior" },
+  { name: "MDF Corte Láser", note: "Corpóreos y piezas caladas" },
+  { name: "Vinil Autoadherible", note: "Rotulación y decoración" },
+  { name: "Lona Frontlit 13oz", note: "Gran formato exterior" },
+  { name: "Acrílico 6mm", note: "Letras y displays pulidos" },
+  { name: "Opalina 225g", note: "Diplomas y credenciales" },
+  { name: "Poliéster Sublimable", note: "Textiles y merch" },
+];
