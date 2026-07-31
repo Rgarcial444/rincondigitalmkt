@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Compass, Eye, Lightbulb, MessageCircle, Scale, Send, Sparkles, X } from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronUp, Compass, Eye, Lightbulb, MessageCircle, Scale, Send, Sparkles, X } from "lucide-react";
 
 import heroImage from "@/assets/hero.jpg";
 import luminosoHalo from "@/assets/luminoso-halo.jpg";
@@ -78,11 +78,15 @@ function Index() {
   const [selected, setSelected] = useState<string[]>([]);
   const [openId, setOpenId] = useState<string | null>(null);
   const [notes, setNotes] = useState("");
+  const [showAll, setShowAll] = useState(false);
 
   const filtered = useMemo(
     () => (category === "all" ? SERVICES : SERVICES.filter((s) => s.category === category)),
     [category],
   );
+
+  const visible = showAll ? filtered : filtered.slice(0, 6);
+  const hasMore = filtered.length > 6;
 
   const openService = SERVICES.find((s) => s.id === openId) ?? null;
 
@@ -244,7 +248,10 @@ function Index() {
             <button
               key={c.id}
               type="button"
-              onClick={() => setCategory(c.id)}
+              onClick={() => {
+                setCategory(c.id);
+                setShowAll(false);
+              }}
               className={cn(
                 "shrink-0 rounded-full border px-4 py-2 text-sm transition-colors",
                 category === c.id
@@ -258,7 +265,7 @@ function Index() {
         </div>
 
         <div className="mt-8 columns-1 gap-4 sm:mt-10 sm:columns-2 sm:gap-6 lg:columns-3">
-          {filtered.map((s) => (
+          {visible.map((s) => (
             <CardFX key={s.id} className="rounded-xl">
               <ServiceCard
                 service={s}
@@ -269,6 +276,26 @@ function Index() {
             </CardFX>
           ))}
         </div>
+
+        {hasMore && (
+          <div className="mt-8 flex justify-center">
+            <button
+              type="button"
+              onClick={() => setShowAll((v) => !v)}
+              className="inline-flex items-center gap-2 rounded-full border border-primary/50 px-6 py-3 text-sm font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+            >
+              {showAll ? (
+                <>
+                  Ver menos <ChevronUp className="size-4" />
+                </>
+              ) : (
+                <>
+                  Ver más servicios <ChevronDown className="size-4" />
+                </>
+              )}
+            </button>
+          </div>
+        )}
       </section>
 
       {/* TRABAJOS */}
