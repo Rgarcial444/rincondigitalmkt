@@ -313,13 +313,13 @@ function Index() {
       </section>
 
       {/* MATERIALES */}
-      <section id="materiales" className="scroll-mt-24 border-y border-border bg-surface py-24">
-        <div className="mx-auto max-w-7xl px-6">
+      <section id="materiales" className="scroll-mt-20 border-y border-border bg-surface py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <p className="eyebrow">Estudio de materiales & acabados</p>
-          <h2 className="mt-4 max-w-2xl text-4xl font-semibold">
-            Sustratos con los que trabajamos todos los días.
+          <h2 className="mt-4 max-w-2xl text-3xl font-semibold sm:text-4xl">
+            Acrílico, aluminio, LED y sustratos con los que trabajamos todos los días.
           </h2>
-          <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:mt-12 sm:grid-cols-2 lg:grid-cols-4">
             {MATERIALS.map((m) => (
               <div key={m.name} className="bg-surface p-6 transition-colors hover:bg-accent">
                 <p className="font-mono text-xs text-primary">{m.name}</p>
