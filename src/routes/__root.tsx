@@ -84,17 +84,36 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Fabricamos letreros luminosos LED, letras corpóreas 3D, neón a medida y cajas de luz. También impresión, gran formato y rotulación. Cotiza por WhatsApp.",
       },
       { name: "author", content: "Rincón Digital" },
-      { property: "og:title", content: "Rincón Digital | Letreros Luminosos y Letras 3D y Publicidad" },
+      {
+        property: "og:title",
+        content: "Rincón Digital | Letreros Luminosos y Letras 3D y Publicidad",
+      },
       {
         property: "og:description",
-        content: "Fabricamos letreros luminosos LED, letras corpóreas 3D, neón a medida y cajas de luz. También impresión, gran formato y rotulación. Cotiza por WhatsApp.",
+        content:
+          "Fabricamos letreros luminosos LED, letras corpóreas 3D, neón a medida y cajas de luz. También impresión, gran formato y rotulación. Cotiza por WhatsApp.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Rincón Digital | Letreros Luminosos y Letras 3D y Publicidad" },
-      { name: "twitter:description", content: "Fabricamos letreros luminosos LED, letras corpóreas 3D, neón a medida y cajas de luz. También impresión, gran formato y rotulación. Cotiza por WhatsApp." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/3a4ceaba-1113-49de-9250-bbad6c0c8403" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/3a4ceaba-1113-49de-9250-bbad6c0c8403" },
+      {
+        name: "twitter:title",
+        content: "Rincón Digital | Letreros Luminosos y Letras 3D y Publicidad",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Fabricamos letreros luminosos LED, letras corpóreas 3D, neón a medida y cajas de luz. También impresión, gran formato y rotulación. Cotiza por WhatsApp.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/3a4ceaba-1113-49de-9250-bbad6c0c8403",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/3a4ceaba-1113-49de-9250-bbad6c0c8403",
+      },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },

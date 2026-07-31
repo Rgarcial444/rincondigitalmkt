@@ -1,5 +1,12 @@
 import { ArrowLeft, Check, MessageCircle, Plus } from "lucide-react";
-import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import type { Service } from "@/data/catalog";
 import { whatsappUrl } from "@/data/catalog";
 import SideRays from "@/components/SideRays";
@@ -31,7 +38,10 @@ export function ServiceSheet({
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="flex w-full flex-col border-border bg-surface p-0 sm:max-w-xl">
+      <SheetContent
+        side="right"
+        className="flex w-full flex-col border-border bg-surface p-0 sm:max-w-xl"
+      >
         {service && (
           <>
             <div className="glass-bar sticky top-0 z-20 flex items-center gap-3 border-b border-border px-4 py-3">

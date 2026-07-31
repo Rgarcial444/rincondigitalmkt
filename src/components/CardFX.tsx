@@ -1,12 +1,12 @@
-import { useRef, useEffect, useCallback } from 'react';
-import { gsap } from 'gsap';
-import './CardFX.css';
+import { useRef, useEffect, useCallback } from "react";
+import { gsap } from "gsap";
+import "./CardFX.css";
 
-const GLOW_COLOR = '201, 183, 126';
+const GLOW_COLOR = "201, 183, 126";
 
 function createParticle(x: number, y: number) {
-  const el = document.createElement('div');
-  el.className = 'card-particle';
+  const el = document.createElement("div");
+  el.className = "card-particle";
   el.style.cssText = `
     left: ${x}px;
     top: ${y}px;
@@ -18,7 +18,7 @@ function createParticle(x: number, y: number) {
 
 export default function CardFX({
   children,
-  className = '',
+  className = "",
   enableTilt = true,
   clickEffect = true,
   enableMagnetism = true,
@@ -43,7 +43,7 @@ export default function CardFX({
     if (particlesInitialized.current || !cardRef.current) return;
     const { width, height } = cardRef.current.getBoundingClientRect();
     memoizedParticles.current = Array.from({ length: particleCount }, () =>
-      createParticle(Math.random() * width, Math.random() * height)
+      createParticle(Math.random() * width, Math.random() * height),
     );
     particlesInitialized.current = true;
   }, [particleCount]);
@@ -52,8 +52,14 @@ export default function CardFX({
     timeoutsRef.current.forEach(clearTimeout);
     timeoutsRef.current = [];
     magnetismAnimRef.current?.kill();
-    particlesRef.current.forEach(p => {
-      gsap.to(p, { scale: 0, opacity: 0, duration: 0.3, ease: 'back.in(1.7)', onComplete: () => p.remove() });
+    particlesRef.current.forEach((p) => {
+      gsap.to(p, {
+        scale: 0,
+        opacity: 0,
+        duration: 0.3,
+        ease: "back.in(1.7)",
+        onComplete: () => p.remove(),
+      });
     });
     particlesRef.current = [];
   }, []);
@@ -68,9 +74,27 @@ export default function CardFX({
         const clone = particle.cloneNode(true) as HTMLElement;
         cardRef.current!.appendChild(clone);
         particlesRef.current.push(clone);
-        gsap.fromTo(clone, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: 'back.out(1.7)' });
-        gsap.to(clone, { x: (Math.random() - 0.5) * 80, y: (Math.random() - 0.5) * 80, rotation: Math.random() * 360, duration: 2 + Math.random() * 2, ease: 'none', repeat: -1, yoyo: true });
-        gsap.to(clone, { opacity: 0.3, duration: 1.5, ease: 'power2.inOut', repeat: -1, yoyo: true });
+        gsap.fromTo(
+          clone,
+          { scale: 0, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.7)" },
+        );
+        gsap.to(clone, {
+          x: (Math.random() - 0.5) * 80,
+          y: (Math.random() - 0.5) * 80,
+          rotation: Math.random() * 360,
+          duration: 2 + Math.random() * 2,
+          ease: "none",
+          repeat: -1,
+          yoyo: true,
+        });
+        gsap.to(clone, {
+          opacity: 0.3,
+          duration: 1.5,
+          ease: "power2.inOut",
+          repeat: -1,
+          yoyo: true,
+        });
       }, i * 100);
       timeoutsRef.current.push(id);
     });
@@ -83,13 +107,20 @@ export default function CardFX({
     const onEnter = () => {
       isHoveredRef.current = true;
       animateParticles();
-      if (enableTilt) gsap.to(el, { rotateX: 5, rotateY: 5, duration: 0.3, ease: 'power2.out', transformPerspective: 1000 });
+      if (enableTilt)
+        gsap.to(el, {
+          rotateX: 5,
+          rotateY: 5,
+          duration: 0.3,
+          ease: "power2.out",
+          transformPerspective: 1000,
+        });
     };
     const onLeave = () => {
       isHoveredRef.current = false;
       clearParticles();
-      if (enableTilt) gsap.to(el, { rotateX: 0, rotateY: 0, duration: 0.3, ease: 'power2.out' });
-      if (enableMagnetism) gsap.to(el, { x: 0, y: 0, duration: 0.3, ease: 'power2.out' });
+      if (enableTilt) gsap.to(el, { rotateX: 0, rotateY: 0, duration: 0.3, ease: "power2.out" });
+      if (enableMagnetism) gsap.to(el, { x: 0, y: 0, duration: 0.3, ease: "power2.out" });
     };
     const onMove = (e: MouseEvent) => {
       const rect = el.getBoundingClientRect();
@@ -99,39 +130,65 @@ export default function CardFX({
       const cy = rect.height / 2;
 
       if (enableTilt) {
-        gsap.to(el, { rotateX: ((y - cy) / cy) * -8, rotateY: ((x - cx) / cx) * 8, duration: 0.1, ease: 'power2.out', transformPerspective: 1000 });
+        gsap.to(el, {
+          rotateX: ((y - cy) / cy) * -8,
+          rotateY: ((x - cx) / cx) * 8,
+          duration: 0.1,
+          ease: "power2.out",
+          transformPerspective: 1000,
+        });
       }
       if (enableMagnetism) {
-        magnetismAnimRef.current = gsap.to(el, { x: (x - cx) * 0.05, y: (y - cy) * 0.05, duration: 0.3, ease: 'power2.out' });
+        magnetismAnimRef.current = gsap.to(el, {
+          x: (x - cx) * 0.05,
+          y: (y - cy) * 0.05,
+          duration: 0.3,
+          ease: "power2.out",
+        });
       }
 
-      el.style.setProperty('--glow-x', `${(x / rect.width) * 100}%`);
-      el.style.setProperty('--glow-y', `${(y / rect.height) * 100}%`);
-      el.style.setProperty('--glow-intensity', '1');
+      el.style.setProperty("--glow-x", `${(x / rect.width) * 100}%`);
+      el.style.setProperty("--glow-y", `${(y / rect.height) * 100}%`);
+      el.style.setProperty("--glow-intensity", "1");
     };
     const onClick = (e: MouseEvent) => {
       if (!clickEffect) return;
       const rect = el.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      const maxDist = Math.max(Math.hypot(x, y), Math.hypot(x - rect.width, y), Math.hypot(x, y - rect.height), Math.hypot(x - rect.width, y - rect.height));
-      const ripple = document.createElement('div');
+      const maxDist = Math.max(
+        Math.hypot(x, y),
+        Math.hypot(x - rect.width, y),
+        Math.hypot(x, y - rect.height),
+        Math.hypot(x - rect.width, y - rect.height),
+      );
+      const ripple = document.createElement("div");
       ripple.style.cssText = `position:absolute;width:${maxDist * 2}px;height:${maxDist * 2}px;border-radius:50%;background:radial-gradient(circle,rgba(${GLOW_COLOR},0.4) 0%,rgba(${GLOW_COLOR},0.2) 30%,transparent 70%);left:${x - maxDist}px;top:${y - maxDist}px;pointer-events:none;z-index:1000;`;
       el.appendChild(ripple);
-      gsap.fromTo(ripple, { scale: 0, opacity: 1 }, { scale: 1, opacity: 0, duration: 0.8, ease: 'power2.out', onComplete: () => ripple.remove() });
+      gsap.fromTo(
+        ripple,
+        { scale: 0, opacity: 1 },
+        {
+          scale: 1,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          onComplete: () => ripple.remove(),
+        },
+      );
     };
 
-    el.addEventListener('mouseenter', onEnter);
-    el.addEventListener('mouseleave', onLeave);
-    el.addEventListener('mousemove', onMove);
-    el.addEventListener('click', onClick);
+    el.addEventListener("mouseenter", onEnter);
+    el.addEventListener("mouseleave", onLeave);
+    el.addEventListener("mousemove", onMove);
+    el.addEventListener("click", onClick);
 
     return () => {
       isHoveredRef.current = false;
-      el.removeEventListener('mouseenter', onEnter);
-      el.removeEventListener('mouseleave', onLeave);
-      el.removeEventListener('mousemove', onMove);
-      el.removeEventListener('click', onClick);
+      el.removeEventListener("mouseenter", onEnter);
+      el.removeEventListener("mouseleave", onLeave);
+      el.removeEventListener("mousemove", onMove);
+      el.removeEventListener("click", onClick);
       clearParticles();
     };
   }, [animateParticles, clearParticles, enableTilt, enableMagnetism, clickEffect]);

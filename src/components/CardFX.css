@@ -1,6 +1,11 @@
 @keyframes particle-float {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  50% { transform: translate(10px, -10px) rotate(180deg); }
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(10px, -10px) rotate(180deg);
+  }
 }
 
 .card-fx {
@@ -14,7 +19,7 @@
 }
 
 .card-fx::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   padding: 2px;
@@ -25,9 +30,13 @@
     transparent 60%
   );
   border-radius: inherit;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   mask-composite: exclude;
   pointer-events: none;
   opacity: 1;

@@ -1,7 +1,7 @@
-import { useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
+import { useRef, useEffect } from "react";
+import { gsap } from "gsap";
 
-import './ImageTrail.css';
+import "./ImageTrail.css";
 
 function lerp(a: number, b: number, n: number) {
   return (1 - n) * a + n * b;
@@ -10,10 +10,10 @@ function lerp(a: number, b: number, n: number) {
 function getLocalPointerPos(e: MouseEvent | TouchEvent, rect: DOMRect) {
   let clientX = 0,
     clientY = 0;
-  if ('touches' in e && e.touches.length > 0) {
+  if ("touches" in e && e.touches.length > 0) {
     clientX = e.touches[0].clientX;
     clientY = e.touches[0].clientY;
-  } else if ('clientX' in e) {
+  } else if ("clientX" in e) {
     clientX = e.clientX;
     clientY = e.clientY;
   }
@@ -31,7 +31,7 @@ class ImageItem {
   rect: DOMRect | null = null;
 
   constructor(DOM_el: HTMLElement) {
-    this.DOM = { el: DOM_el, inner: DOM_el.querySelector('.content__img-inner') };
+    this.DOM = { el: DOM_el, inner: DOM_el.querySelector(".content__img-inner") };
     this.getRect();
   }
 
@@ -58,26 +58,28 @@ class ImageTrailVariant1 {
   constructor(container: HTMLElement) {
     this.container = container;
     this.DOM = { el: container };
-    this.images = [...container.querySelectorAll('.content__img')].map(img => new ImageItem(img as HTMLElement));
+    this.images = [...container.querySelectorAll(".content__img")].map(
+      (img) => new ImageItem(img as HTMLElement),
+    );
     this.imagesTotal = this.images.length;
 
     const handlePointerMove = (ev: MouseEvent | TouchEvent) => {
       const rect = container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
     };
-    container.addEventListener('mousemove', handlePointerMove);
-    container.addEventListener('touchmove', handlePointerMove);
+    container.addEventListener("mousemove", handlePointerMove);
+    container.addEventListener("touchmove", handlePointerMove);
 
     const initRender = (ev: Event) => {
       const rect = container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev as MouseEvent | TouchEvent, rect);
       this.cacheMousePos = { ...this.mousePos };
       this.rafId = requestAnimationFrame(() => this.render());
-      container.removeEventListener('mousemove', initRender);
-      container.removeEventListener('touchmove', initRender);
+      container.removeEventListener("mousemove", initRender);
+      container.removeEventListener("touchmove", initRender);
     };
-    container.addEventListener('mousemove', initRender);
-    container.addEventListener('touchmove', initRender);
+    container.addEventListener("mousemove", initRender);
+    container.addEventListener("touchmove", initRender);
   }
 
   render() {
@@ -100,15 +102,35 @@ class ImageTrailVariant1 {
     if (!img.DOM.el || !img.rect) return;
 
     gsap.killTweensOf(img.DOM.el);
-    gsap.timeline({
-      onStart: () => { this.activeImagesCount++; this.isIdle = false; },
-      onComplete: () => { this.activeImagesCount--; if (this.activeImagesCount === 0) this.isIdle = true; }
-    })
-      .fromTo(img.DOM.el,
-        { opacity: 1, scale: 1, zIndex: this.zIndexVal, x: this.cacheMousePos.x - img.rect.width / 2, y: this.cacheMousePos.y - img.rect.height / 2 },
-        { duration: 0.4, ease: 'power1', x: this.mousePos.x - img.rect.width / 2, y: this.mousePos.y - img.rect.height / 2 }, 0
+    gsap
+      .timeline({
+        onStart: () => {
+          this.activeImagesCount++;
+          this.isIdle = false;
+        },
+        onComplete: () => {
+          this.activeImagesCount--;
+          if (this.activeImagesCount === 0) this.isIdle = true;
+        },
+      })
+      .fromTo(
+        img.DOM.el,
+        {
+          opacity: 1,
+          scale: 1,
+          zIndex: this.zIndexVal,
+          x: this.cacheMousePos.x - img.rect.width / 2,
+          y: this.cacheMousePos.y - img.rect.height / 2,
+        },
+        {
+          duration: 0.4,
+          ease: "power1",
+          x: this.mousePos.x - img.rect.width / 2,
+          y: this.mousePos.y - img.rect.height / 2,
+        },
+        0,
       )
-      .to(img.DOM.el, { duration: 0.4, ease: 'power3', opacity: 0, scale: 0.2 }, 0.4);
+      .to(img.DOM.el, { duration: 0.4, ease: "power3", opacity: 0, scale: 0.2 }, 0.4);
   }
 }
 
@@ -116,7 +138,13 @@ const variantMap: Record<number, new (container: HTMLElement) => ImageTrailVaria
   1: ImageTrailVariant1,
 };
 
-export default function ImageTrail({ items = [], variant = 1 }: { items: string[]; variant?: number }) {
+export default function ImageTrail({
+  items = [],
+  variant = 1,
+}: {
+  items: string[];
+  variant?: number;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -126,13 +154,13 @@ export default function ImageTrail({ items = [], variant = 1 }: { items: string[
     const instance = new Cls(containerRef.current);
 
     const handleResize = () => {
-      instance.images.forEach(img => img.getRect());
+      instance.images.forEach((img) => img.getRect());
     };
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
       cancelAnimationFrame(instance.rafId);
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, [variant, items]);
 

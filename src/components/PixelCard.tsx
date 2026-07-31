@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import './PixelCard.css';
+import { useEffect, useRef } from "react";
+import "./PixelCard.css";
 
 class Pixel {
   canvas: HTMLCanvasElement;
@@ -20,7 +20,15 @@ class Pixel {
   isReverse = false;
   isShimmer = false;
 
-  constructor(canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, x: number, y: number, color: string, speed: number, delay: number) {
+  constructor(
+    canvas: HTMLCanvasElement,
+    context: CanvasRenderingContext2D,
+    x: number,
+    y: number,
+    color: string,
+    speed: number,
+    delay: number,
+  ) {
     this.canvas = canvas;
     this.ctx = context;
     this.x = x;
@@ -94,20 +102,47 @@ function getEffectiveSpeed(value: number, reducedMotion: boolean) {
   return value * throttle;
 }
 
-const VARIANTS: Record<string, { activeColor: string | null; gap: number; speed: number; colors: string; noFocus: boolean }> = {
-  default: { activeColor: null, gap: 5, speed: 35, colors: '#e8d8a8,#d9c279,#c9b77e,#f0e6c4', noFocus: false },
-  blue: { activeColor: '#e0f2fe', gap: 10, speed: 25, colors: '#e0f2fe,#7dd3fc,#0ea5e9', noFocus: false },
-  yellow: { activeColor: '#fef08a', gap: 3, speed: 20, colors: '#fef08a,#fde047,#eab308', noFocus: false },
-  pink: { activeColor: '#fecdd3', gap: 6, speed: 80, colors: '#fecdd3,#fda4af,#e11d48', noFocus: true },
+const VARIANTS: Record<
+  string,
+  { activeColor: string | null; gap: number; speed: number; colors: string; noFocus: boolean }
+> = {
+  default: {
+    activeColor: null,
+    gap: 5,
+    speed: 35,
+    colors: "#e8d8a8,#d9c279,#c9b77e,#f0e6c4",
+    noFocus: false,
+  },
+  blue: {
+    activeColor: "#e0f2fe",
+    gap: 10,
+    speed: 25,
+    colors: "#e0f2fe,#7dd3fc,#0ea5e9",
+    noFocus: false,
+  },
+  yellow: {
+    activeColor: "#fef08a",
+    gap: 3,
+    speed: 20,
+    colors: "#fef08a,#fde047,#eab308",
+    noFocus: false,
+  },
+  pink: {
+    activeColor: "#fecdd3",
+    gap: 6,
+    speed: 80,
+    colors: "#fecdd3,#fda4af,#e11d48",
+    noFocus: true,
+  },
 };
 
 export default function PixelCard({
-  variant = 'default',
+  variant = "default",
   gap,
   speed,
   colors,
   noFocus,
-  className = '',
+  className = "",
   children,
 }: {
   variant?: string;
@@ -124,7 +159,7 @@ export default function PixelCard({
   const animationRef = useRef(0);
   const timePreviousRef = useRef(performance.now());
   const reducedMotion =
-    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const variantCfg = VARIANTS[variant] || VARIANTS.default;
   const finalGap = gap ?? variantCfg.gap;
@@ -138,7 +173,7 @@ export default function PixelCard({
     const rect = containerRef.current.getBoundingClientRect();
     const width = Math.floor(rect.width);
     const height = Math.floor(rect.height);
-    const ctx = canvasRef.current.getContext('2d');
+    const ctx = canvasRef.current.getContext("2d");
     if (!ctx) return;
 
     canvasRef.current.width = width;
@@ -146,7 +181,7 @@ export default function PixelCard({
     canvasRef.current.style.width = `${width}px`;
     canvasRef.current.style.height = `${height}px`;
 
-    const colorsArray = finalColors.split(',');
+    const colorsArray = finalColors.split(",");
     const pxs: Pixel[] = [];
     for (let x = 0; x < width; x += parseInt(String(finalGap), 10)) {
       for (let y = 0; y < height; y += parseInt(String(finalGap), 10)) {
@@ -155,13 +190,23 @@ export default function PixelCard({
         const dy = y - height / 2;
         const distance = Math.sqrt(dx * dx + dy * dy);
         const delay = reducedMotion ? 0 : distance;
-        pxs.push(new Pixel(canvasRef.current, ctx, x, y, color, getEffectiveSpeed(finalSpeed, reducedMotion), delay));
+        pxs.push(
+          new Pixel(
+            canvasRef.current,
+            ctx,
+            x,
+            y,
+            color,
+            getEffectiveSpeed(finalSpeed, reducedMotion),
+            delay,
+          ),
+        );
       }
     }
     pixelsRef.current = pxs;
   };
 
-  const doAnimate = (fnName: 'appear' | 'disappear') => {
+  const doAnimate = (fnName: "appear" | "disappear") => {
     animationRef.current = requestAnimationFrame(() => doAnimate(fnName));
     const timeNow = performance.now();
     const timePassed = timeNow - timePreviousRef.current;
@@ -170,7 +215,7 @@ export default function PixelCard({
     if (timePassed < timeInterval) return;
     timePreviousRef.current = timeNow - (timePassed % timeInterval);
 
-    const ctx = canvasRef.current?.getContext('2d');
+    const ctx = canvasRef.current?.getContext("2d");
     if (!ctx || !canvasRef.current) return;
 
     ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
@@ -183,20 +228,20 @@ export default function PixelCard({
     if (allIdle) cancelAnimationFrame(animationRef.current);
   };
 
-  const handleAnimation = (name: 'appear' | 'disappear') => {
+  const handleAnimation = (name: "appear" | "disappear") => {
     cancelAnimationFrame(animationRef.current);
     animationRef.current = requestAnimationFrame(() => doAnimate(name));
   };
 
-  const onMouseEnter = () => handleAnimation('appear');
-  const onMouseLeave = () => handleAnimation('disappear');
+  const onMouseEnter = () => handleAnimation("appear");
+  const onMouseLeave = () => handleAnimation("disappear");
   const onFocus = (e: React.FocusEvent) => {
     if (e.currentTarget.contains(e.relatedTarget as Node)) return;
-    handleAnimation('appear');
+    handleAnimation("appear");
   };
   const onBlur = (e: React.FocusEvent) => {
     if (e.currentTarget.contains(e.relatedTarget as Node)) return;
-    handleAnimation('disappear');
+    handleAnimation("disappear");
   };
 
   useEffect(() => {

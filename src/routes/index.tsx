@@ -1,6 +1,19 @@
 import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, ChevronDown, ChevronUp, Compass, Eye, Lightbulb, MessageCircle, Scale, Send, Sparkles, X } from "lucide-react";
+import {
+  ArrowRight,
+  ChevronDown,
+  ChevronUp,
+  Compass,
+  Eye,
+  Lightbulb,
+  Menu,
+  MessageCircle,
+  Scale,
+  Send,
+  Sparkles,
+  X,
+} from "lucide-react";
 
 import heroImage from "@/assets/hero.jpg";
 import luminosoHalo from "@/assets/luminoso-halo.jpg";
@@ -21,12 +34,14 @@ export const Route = createFileRoute("/")({
       { title: "Rincón Digital | Letreros Luminosos y Letras 3D" },
       {
         name: "description",
-        content: "Fabricamos letreros LED, letras 3D, neón, impresión y gran formato. Cotiza por WhatsApp.",
+        content:
+          "Fabricamos letreros LED, letras 3D, neón, impresión y gran formato. Cotiza por WhatsApp.",
       },
       { property: "og:title", content: "Rincón Digital | Letreros Luminosos y Letras 3D" },
       {
         property: "og:description",
-        content: "Fabricamos letreros LED, letras 3D, neón, impresión y gran formato. Cotiza por WhatsApp.",
+        content:
+          "Fabricamos letreros LED, letras 3D, neón, impresión y gran formato. Cotiza por WhatsApp.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -36,10 +51,22 @@ export const Route = createFileRoute("/")({
 });
 
 const ABOUT = [
-  { icon: Compass, title: "Misión", text: "Ideas en piezas impecables, con procesos responsables y tiempos que respetan tu proyecto." },
-  { icon: Eye, title: "Visión", text: "Ser el referente regional en comunicación visual, uniendo diseño, tecnología y producción." },
+  {
+    icon: Compass,
+    title: "Misión",
+    text: "Ideas en piezas impecables, con procesos responsables y tiempos que respetan tu proyecto.",
+  },
+  {
+    icon: Eye,
+    title: "Visión",
+    text: "Ser el referente regional en comunicación visual, uniendo diseño, tecnología y producción.",
+  },
   { icon: Sparkles, title: "Vanguardia", text: "Tecnología al servicio de una buena idea." },
-  { icon: Scale, title: "Sentido Común", text: "Soluciones justas para tu objetivo y presupuesto." },
+  {
+    icon: Scale,
+    title: "Sentido Común",
+    text: "Soluciones justas para tu objetivo y presupuesto.",
+  },
 ];
 
 const LUMINOSOS = [
@@ -79,6 +106,7 @@ function Index() {
   const [openId, setOpenId] = useState<string | null>(null);
   const [notes, setNotes] = useState("");
   const [showAll, setShowAll] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const filtered = useMemo(
     () => (category === "all" ? SERVICES : SERVICES.filter((s) => s.category === category)),
@@ -113,20 +141,58 @@ function Index() {
             Rincón<span className="text-primary">.</span>Digital
           </a>
           <nav className="hidden gap-5 text-sm text-muted-foreground lg:flex">
-            <a href="#luminosos" className="transition-colors hover:text-foreground">Luminosos</a>
-            <a href="#catalogo" className="transition-colors hover:text-foreground">Catálogo</a>
-            <a href="#trabajos" className="transition-colors hover:text-foreground">Trabajos</a>
-            <a href="#cotizador" className="transition-colors hover:text-foreground">Cotizador</a>
+            <a href="#luminosos" className="transition-colors hover:text-foreground">
+              Luminosos
+            </a>
+            <a href="#catalogo" className="transition-colors hover:text-foreground">
+              Catálogo
+            </a>
+            <a href="#trabajos" className="transition-colors hover:text-foreground">
+              Trabajos
+            </a>
+            <a href="#cotizador" className="transition-colors hover:text-foreground">
+              Cotizador
+            </a>
           </nav>
-          <a
-            href={quoteUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex shrink-0 items-center gap-2 rounded-full border border-primary/50 px-3 py-2 text-xs font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground sm:px-4"
-          >
-            <MessageCircle className="size-3.5" /> Cotizar
-          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href={quoteUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex shrink-0 items-center gap-2 rounded-full border border-primary/50 px-3 py-2 text-xs font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground sm:px-4"
+            >
+              <MessageCircle className="size-3.5" /> Cotizar
+            </a>
+            <button
+              type="button"
+              onClick={() => setMenuOpen((v) => !v)}
+              aria-label="Abrir menú"
+              aria-expanded={menuOpen}
+              className="inline-flex size-9 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-primary/60 hover:text-primary lg:hidden"
+            >
+              {menuOpen ? <X className="size-4" /> : <Menu className="size-4" />}
+            </button>
+          </div>
         </div>
+        {menuOpen && (
+          <nav className="glass-bar flex flex-col gap-1 border-b border-border px-4 py-3 lg:hidden">
+            {[
+              { href: "#luminosos", label: "Luminosos" },
+              { href: "#catalogo", label: "Catálogo" },
+              { href: "#trabajos", label: "Trabajos" },
+              { href: "#cotizador", label: "Cotizador" },
+            ].map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setMenuOpen(false)}
+                className="rounded-md px-2 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+              >
+                {l.label}
+              </a>
+            ))}
+          </nav>
+        )}
       </header>
 
       {/* HERO */}
@@ -167,7 +233,10 @@ function Index() {
       </section>
 
       {/* LUMINOSOS */}
-      <section id="luminosos" className="scroll-mt-20 border-b border-border bg-surface py-16 sm:py-24">
+      <section
+        id="luminosos"
+        className="scroll-mt-20 border-b border-border bg-surface py-16 sm:py-24"
+      >
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
@@ -239,7 +308,8 @@ function Index() {
             <h2 className="mt-4 text-3xl font-semibold sm:text-4xl">Servicios del estudio</h2>
           </div>
           <p className="max-w-sm text-sm text-muted-foreground">
-            Toca cada pieza para ver su ficha. <span className="text-primary">+</span> para agregar a tu cotización.
+            Toca cada pieza para ver su ficha. <span className="text-primary">+</span> para agregar
+            a tu cotización.
           </p>
         </div>
 
@@ -304,7 +374,9 @@ function Index() {
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
               <p className="eyebrow">Galería</p>
-              <h2 className="mt-4 max-w-2xl text-3xl font-semibold sm:text-4xl">Nuestros trabajos</h2>
+              <h2 className="mt-4 max-w-2xl text-3xl font-semibold sm:text-4xl">
+                Nuestros trabajos
+              </h2>
             </div>
             <p className="max-w-sm text-sm text-muted-foreground">
               Desliza el cursor sobre la galería.
@@ -330,7 +402,10 @@ function Index() {
       </section>
 
       {/* MATERIALES */}
-      <section id="materiales" className="scroll-mt-20 border-y border-border bg-surface py-16 sm:py-24">
+      <section
+        id="materiales"
+        className="scroll-mt-20 border-y border-border bg-surface py-16 sm:py-24"
+      >
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <p className="eyebrow">Materiales</p>
           <h2 className="mt-4 max-w-2xl text-3xl font-semibold sm:text-4xl">
@@ -348,7 +423,10 @@ function Index() {
       </section>
 
       {/* COTIZADOR */}
-      <section id="cotizador" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24">
+      <section
+        id="cotizador"
+        className="mx-auto max-w-7xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24"
+      >
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
           <div>
             <p className="eyebrow">Cotizador</p>
@@ -421,7 +499,9 @@ function Index() {
                     <a.icon className="mt-0.5 size-4 shrink-0 text-primary" />
                     <div>
                       <p className="text-sm font-semibold text-foreground">{a.title}</p>
-                      <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">{a.text}</p>
+                      <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
+                        {a.text}
+                      </p>
                     </div>
                   </div>
                 ))}

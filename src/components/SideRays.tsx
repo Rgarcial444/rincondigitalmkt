@@ -1,41 +1,47 @@
-import { useRef, useEffect, useState } from 'react';
-import { Renderer, Program, Triangle, Mesh } from 'ogl';
-import './SideRays.css';
+import { useRef, useEffect, useState } from "react";
+import { Renderer, Program, Triangle, Mesh } from "ogl";
+import "./SideRays.css";
 
 const hexToRgb = (hex: string) => {
   const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return m ? [parseInt(m[1], 16) / 255, parseInt(m[2], 16) / 255, parseInt(m[3], 16) / 255] : [1, 1, 1];
+  return m
+    ? [parseInt(m[1], 16) / 255, parseInt(m[2], 16) / 255, parseInt(m[3], 16) / 255]
+    : [1, 1, 1];
 };
 
 const originToFlip = (origin: string) => {
   switch (origin) {
-    case 'top-left': return [1, 0];
-    case 'bottom-right': return [0, 1];
-    case 'bottom-left': return [1, 1];
-    default: return [0, 0];
+    case "top-left":
+      return [1, 0];
+    case "bottom-right":
+      return [0, 1];
+    case "bottom-left":
+      return [1, 1];
+    default:
+      return [0, 0];
   }
 };
 
 const SideRays = ({
   speed = 2.5,
-  rayColor1 = '#EAB308',
-  rayColor2 = '#96c8ff',
+  rayColor1 = "#EAB308",
+  rayColor2 = "#96c8ff",
   intensity = 2,
   spread = 2,
-  origin = 'top-right',
+  origin = "top-right",
   tilt = 0,
   saturation = 1.5,
   blend = 0.75,
   falloff = 1.6,
   opacity = 1.0,
-  className = '',
+  className = "",
 }: {
   speed?: number;
   rayColor1?: string;
   rayColor2?: string;
   intensity?: number;
   spread?: number;
-  origin?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
+  origin?: "top-right" | "top-left" | "bottom-right" | "bottom-left";
   tilt?: number;
   saturation?: number;
   blend?: number;
@@ -44,10 +50,10 @@ const SideRays = ({
   className?: string;
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const uniformsRef = useRef<any>(null);
-  const rendererRef = useRef<any>(null);
+  const uniformsRef = useRef<Record<string, { value: number | number[] }> | null>(null);
+  const rendererRef = useRef<Renderer | null>(null);
   const animationIdRef = useRef<number | null>(null);
-  const meshRef = useRef<any>(null);
+  const meshRef = useRef<Mesh | null>(null);
   const cleanupFunctionRef = useRef<(() => void) | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -56,7 +62,7 @@ const SideRays = ({
     if (!containerRef.current) return;
 
     observerRef.current = new IntersectionObserver(
-      entries => {
+      (entries) => {
         setIsVisible(entries[0].isIntersecting);
       },
       { threshold: 0.1 },
@@ -79,7 +85,7 @@ const SideRays = ({
     const initializeWebGL = async () => {
       if (!containerRef.current) return;
 
-      await new Promise(resolve => setTimeout(resolve, 10));
+      await new Promise((resolve) => setTimeout(resolve, 10));
       if (!containerRef.current) return;
 
       const renderer = new Renderer({
@@ -89,8 +95,8 @@ const SideRays = ({
       rendererRef.current = renderer;
 
       const gl = renderer.gl;
-      gl.canvas.style.width = '100%';
-      gl.canvas.style.height = '100%';
+      gl.canvas.style.width = "100%";
+      gl.canvas.style.height = "100%";
 
       while (containerRef.current.firstChild) {
         containerRef.current.removeChild(containerRef.current.firstChild);
@@ -165,7 +171,7 @@ void main() {
 }`;
 
       const [flipX, flipY] = originToFlip(origin);
-      const uniforms: any = {
+      const uniforms: Record<string, { value: number | number[] }> = {
         iTime: { value: 0 },
         iResolution: { value: [1, 1] },
         iSpeed: { value: speed },
@@ -207,7 +213,7 @@ void main() {
         }
       };
 
-      window.addEventListener('resize', updateSize);
+      window.addEventListener("resize", updateSize);
       updateSize();
       animationIdRef.current = requestAnimationFrame(loop);
 
@@ -216,14 +222,16 @@ void main() {
           cancelAnimationFrame(animationIdRef.current);
           animationIdRef.current = null;
         }
-        window.removeEventListener('resize', updateSize);
+        window.removeEventListener("resize", updateSize);
         if (renderer) {
           try {
-            const loseCtx = renderer.gl.getExtension('WEBGL_lose_context');
+            const loseCtx = renderer.gl.getExtension("WEBGL_lose_context");
             if (loseCtx) loseCtx.loseContext();
             const canvas = renderer.gl.canvas;
             if (canvas && canvas.parentNode) canvas.parentNode.removeChild(canvas);
-          } catch {}
+          } catch (err) {
+            void err;
+          }
         }
         rendererRef.current = null;
         uniformsRef.current = null;
@@ -237,7 +245,20 @@ void main() {
       cleanupFunctionRef.current?.();
       cleanupFunctionRef.current = null;
     };
-  }, [isVisible, speed, rayColor1, rayColor2, intensity, spread, origin, tilt, saturation, blend, falloff, opacity]);
+  }, [
+    isVisible,
+    speed,
+    rayColor1,
+    rayColor2,
+    intensity,
+    spread,
+    origin,
+    tilt,
+    saturation,
+    blend,
+    falloff,
+    opacity,
+  ]);
 
   useEffect(() => {
     if (!uniformsRef.current) return;
@@ -255,7 +276,19 @@ void main() {
     u.iBlend.value = blend;
     u.iFalloff.value = falloff;
     u.iOpacity.value = opacity;
-  }, [speed, rayColor1, rayColor2, intensity, spread, origin, tilt, saturation, blend, falloff, opacity]);
+  }, [
+    speed,
+    rayColor1,
+    rayColor2,
+    intensity,
+    spread,
+    origin,
+    tilt,
+    saturation,
+    blend,
+    falloff,
+    opacity,
+  ]);
 
   return <div ref={containerRef} className={`side-rays-container ${className}`.trim()} />;
 };

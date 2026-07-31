@@ -43,7 +43,11 @@ export const SERVICES: Service[] = [
     aspect: "tall",
     summary:
       "Identidad visual con composición sólida y piezas profesionales listas para producción.",
-    bullets: ["Identidad visual y manuales de marca", "Composición y retícula editorial", "Piezas listas para prensa"],
+    bullets: [
+      "Identidad visual y manuales de marca",
+      "Composición y retícula editorial",
+      "Piezas listas para prensa",
+    ],
     finishes: ["Manual de marca", "Archivos vectoriales", "Preprensa CMYK"],
     specs: [
       { label: "Entregables", value: "Logotipo, paleta, tipografías, aplicaciones" },
@@ -58,7 +62,11 @@ export const SERVICES: Service[] = [
     image: digital,
     aspect: "wide",
     summary: "Tirajes cortos con color estable y acabados finos para papelería corporativa.",
-    bullets: ["Tabloides y autoadheribles", "Couché, diplomas y credenciales", "Papelería corporativa completa"],
+    bullets: [
+      "Tabloides y autoadheribles",
+      "Couché, diplomas y credenciales",
+      "Papelería corporativa completa",
+    ],
     finishes: ["Brillante", "Mate", "Autoadherible", "Suaje"],
     specs: [
       { label: "Sustratos", value: "Couché 130–350g, bond, opalina, adherible" },
@@ -73,7 +81,11 @@ export const SERVICES: Service[] = [
     image: offset,
     aspect: "wide",
     summary: "Grandes volúmenes con consistencia cromática y costo por pieza optimizado.",
-    bullets: ["Revistas, folletos y flyers", "Carpetas, cajas y etiquetas", "Agendas y encuadernados"],
+    bullets: [
+      "Revistas, folletos y flyers",
+      "Carpetas, cajas y etiquetas",
+      "Agendas y encuadernados",
+    ],
     finishes: ["Barniz UV", "Laminado mate/brillante", "Hot stamping", "Suaje y pegado"],
     specs: [
       { label: "Tiraje mínimo", value: "500 piezas" },
@@ -88,7 +100,11 @@ export const SERVICES: Service[] = [
     image: granformato,
     aspect: "tall",
     summary: "Alta resolución en lonas, vinilos y murales de gran superficie.",
-    bullets: ["Lonas, vinilos, carteles y vallas", "Foto lienzos y murales", "Photocalls y backings"],
+    bullets: [
+      "Lonas, vinilos, carteles y vallas",
+      "Foto lienzos y murales",
+      "Photocalls y backings",
+    ],
     finishes: ["Lona frontlit", "Vinil texturizado", "Laminado mate", "Ojillos y bastidor"],
     specs: [
       { label: "Resolución", value: "Hasta 1440 dpi" },
@@ -103,7 +119,11 @@ export const SERVICES: Service[] = [
     image: rotulacion,
     aspect: "square",
     summary: "Rotulación comercial y vehicular con corte de precisión e instalación profesional.",
-    bullets: ["Rotulación comercial de fachadas", "Rotulación vehicular integral", "Microperforado y esmerilado"],
+    bullets: [
+      "Rotulación comercial de fachadas",
+      "Rotulación vehicular integral",
+      "Microperforado y esmerilado",
+    ],
     finishes: ["Vinil mate", "Vinil brillante", "Esmerilado", "Reflejante"],
     specs: [
       { label: "Durabilidad", value: "3 a 7 años en exterior" },
@@ -118,7 +138,11 @@ export const SERVICES: Service[] = [
     image: senalizacion,
     aspect: "wide",
     summary: "Señalética normativa para protección civil y seguridad laboral.",
-    bullets: ["Protección civil y rutas de evacuación", "Normativas de seguridad laboral", "Señalética arquitectónica"],
+    bullets: [
+      "Protección civil y rutas de evacuación",
+      "Normativas de seguridad laboral",
+      "Señalética arquitectónica",
+    ],
     finishes: ["PVC 3mm", "Acrílico", "Aluminio", "Fotoluminiscente"],
     specs: [
       { label: "Normativa", value: "NOM-003-SEGOB / NOM-026-STPS" },
@@ -133,7 +157,11 @@ export const SERVICES: Service[] = [
     image: laser,
     aspect: "tall",
     summary: "Anuncios corpóreos y piezas caladas de alta precisión en múltiples materiales.",
-    bullets: ["Letras corpóreas con o sin luz", "Piezas caladas y grabado", "Prototipos y volumetría 3D"],
+    bullets: [
+      "Letras corpóreas con o sin luz",
+      "Piezas caladas y grabado",
+      "Prototipos y volumetría 3D",
+    ],
     finishes: ["MDF corte láser", "Acrílico pulido", "Trovicel 3–19mm", "Iluminación LED"],
     specs: [
       { label: "Tolerancia", value: "± 0.2 mm" },
@@ -148,7 +176,11 @@ export const SERVICES: Service[] = [
     image: merch,
     aspect: "square",
     summary: "Textiles, regalos personalizados y souvenirs con acabado durable.",
-    bullets: ["Textiles y uniformes", "Regalos personalizados y souvenirs", "Herrería publicitaria"],
+    bullets: [
+      "Textiles y uniformes",
+      "Regalos personalizados y souvenirs",
+      "Herrería publicitaria",
+    ],
     finishes: ["Sublimado full color", "DTF", "Vinil textil", "Grabado láser"],
     specs: [
       { label: "Textiles", value: "Poliéster, mezclas, algodón (DTF)" },
@@ -203,7 +235,11 @@ export const SERVICES: Service[] = [
     image: neonLed,
     aspect: "wide",
     summary: "Neón flexible LED para interiores, negocios y eventos, en cualquier trazo o color.",
-    bullets: ["Frases y logotipos personalizados", "Base acrílica transparente", "Control de intensidad y color"],
+    bullets: [
+      "Frases y logotipos personalizados",
+      "Base acrílica transparente",
+      "Control de intensidad y color",
+    ],
     finishes: ["Neón cálido", "Neón RGB", "Base recortada", "Base rectangular"],
     specs: [
       { label: "Colores", value: "12 tonos fijos o RGB con control" },
@@ -218,7 +254,11 @@ export const SERVICES: Service[] = [
     image: cajaLuz,
     aspect: "wide",
     summary: "Anuncios de bandera, marquesinas y lightbox con difusión pareja de luz.",
-    bullets: ["Cajas de luz de bandera y frontales", "Marquesinas y toldos iluminados", "Cambio de carátula sin desmontar"],
+    bullets: [
+      "Cajas de luz de bandera y frontales",
+      "Marquesinas y toldos iluminados",
+      "Cambio de carátula sin desmontar",
+    ],
     finishes: ["Lona translúcida", "Acrílico opal", "Perfilería de aluminio", "Doble vista"],
     specs: [
       { label: "Profundidad", value: "8 cm a 20 cm" },
