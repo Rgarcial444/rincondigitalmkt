@@ -4,14 +4,10 @@ import {
   ArrowRight,
   ChevronDown,
   ChevronUp,
-  Compass,
-  Eye,
   Lightbulb,
   Menu,
   MessageCircle,
-  Scale,
   Send,
-  Sparkles,
   X,
 } from "lucide-react";
 
@@ -26,6 +22,7 @@ import { ServiceCard } from "@/components/studio/ServiceCard";
 import { ServiceSheet } from "@/components/studio/ServiceSheet";
 import ImageTrail from "@/components/ImageTrail";
 import CardFX from "@/components/CardFX";
+import { VisitCounter } from "@/components/VisitCounter";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({
@@ -49,25 +46,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-const ABOUT = [
-  {
-    icon: Compass,
-    title: "Misión",
-    text: "Ideas en piezas impecables, con procesos responsables y tiempos que respetan tu proyecto.",
-  },
-  {
-    icon: Eye,
-    title: "Visión",
-    text: "Ser el referente regional en comunicación visual, uniendo diseño, tecnología y producción.",
-  },
-  { icon: Sparkles, title: "Vanguardia", text: "Tecnología al servicio de una buena idea." },
-  {
-    icon: Scale,
-    title: "Sentido Común",
-    text: "Soluciones justas para tu objetivo y presupuesto.",
-  },
-];
 
 const LUMINOSOS = [
   {
@@ -486,29 +464,9 @@ function Index() {
         </div>
       </section>
 
-      <footer className="border-t border-border py-10 sm:py-12">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 text-sm text-muted-foreground sm:px-6">
-          <div className="group relative">
-            <p className="cursor-default font-display text-foreground">
-              Rincón<span className="text-primary">.</span>Digital
-            </p>
-            <div className="pointer-events-none absolute bottom-full left-0 mb-3 hidden w-72 rounded-xl border border-border bg-card p-4 opacity-0 shadow-lg transition-opacity duration-200 group-hover:pointer-events-auto group-hover:block group-hover:opacity-100">
-              <div className="space-y-3">
-                {ABOUT.map((a) => (
-                  <div key={a.title} className="flex gap-2.5">
-                    <a.icon className="mt-0.5 size-4 shrink-0 text-primary" />
-                    <div>
-                      <p className="text-sm font-semibold text-foreground">{a.title}</p>
-                      <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
-                        {a.text}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          <p>Letreros Luminosos · Letras 3D · Impresión & Gran Formato</p>
+      <footer className="border-t border-border py-3">
+        <div className="mx-auto flex max-w-7xl px-4 sm:px-6">
+          <VisitCounter />
         </div>
       </footer>
 
