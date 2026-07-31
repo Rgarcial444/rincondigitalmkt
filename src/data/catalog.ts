@@ -40,6 +40,76 @@ export type Service = {
 
 export const SERVICES: Service[] = [
   {
+    id: "letras-luminosas",
+    title: "Letreros Luminosos LED",
+    category: "luminosos",
+    image: luminosoHalo,
+    aspect: "tall",
+    summary:
+      "Nuestra especialidad: letras corpóreas iluminadas con LED, frontales o con halo retroiluminado.",
+    bullets: [
+      "Letras con cara de acrílico iluminada al frente",
+      "Halo retroiluminado sobre fachada",
+      "Instalación y conexión eléctrica incluida",
+    ],
+    finishes: ["Acrílico iluminado", "Halo backlight", "Aluminio compuesto", "LED 2700K–6500K"],
+    specs: [
+      { label: "Altura de letra", value: "10 cm a 200 cm" },
+      { label: "Consumo", value: "LED de bajo consumo, fuente certificada" },
+      { label: "Uso", value: "Interior y exterior (IP65)" },
+    ],
+  },
+  {
+    id: "letras-3d",
+    title: "Letras Corpóreas 3D",
+    category: "luminosos",
+    image: letras3d,
+    aspect: "square",
+    summary: "Volumetría precisa en acrílico, PVC, MDF o metal para fachadas y muros de marca.",
+    bullets: [
+      "Corte y armado CNC/láser de alta precisión",
+      "Muros de marca y recepciones corporativas",
+      "Acabados metálicos, mate y espejo",
+    ],
+    finishes: ["Acrílico pulido", "PVC 19mm", "Espejo dorado", "Pintura automotiva"],
+    specs: [
+      { label: "Espesores", value: "3 mm a 100 mm de volumen" },
+      { label: "Tolerancia", value: "± 0.2 mm" },
+      { label: "Montaje", value: "Separadores, tornillería oculta o adhesivo" },
+    ],
+  },
+  {
+    id: "neon-led",
+    title: "Neón LED a Medida",
+    category: "luminosos",
+    image: neonLed,
+    aspect: "wide",
+    summary: "Neón flexible LED para interiores, negocios y eventos, en cualquier trazo o color.",
+    bullets: ["Frases y logotipos personalizados", "Base acrílica transparente", "Control de intensidad y color"],
+    finishes: ["Neón cálido", "Neón RGB", "Base recortada", "Base rectangular"],
+    specs: [
+      { label: "Colores", value: "12 tonos fijos o RGB con control" },
+      { label: "Tamaño", value: "Desde 30 cm hasta 3 m" },
+      { label: "Alimentación", value: "12V con adaptador incluido" },
+    ],
+  },
+  {
+    id: "cajas-luz",
+    title: "Cajas de Luz & Anuncios Retroiluminados",
+    category: "luminosos",
+    image: cajaLuz,
+    aspect: "wide",
+    summary: "Anuncios de bandera, marquesinas y lightbox con difusión pareja de luz.",
+    bullets: ["Cajas de luz de bandera y frontales", "Marquesinas y toldos iluminados", "Cambio de carátula sin desmontar"],
+    finishes: ["Lona translúcida", "Acrílico opal", "Perfilería de aluminio", "Doble vista"],
+    specs: [
+      { label: "Profundidad", value: "8 cm a 20 cm" },
+      { label: "Iluminación", value: "Módulos LED de alta difusión" },
+      { label: "Resistencia", value: "Sellado para intemperie" },
+    ],
+  },
+
+  {
     id: "diseno-grafico",
     title: "Diseño Gráfico",
     category: "diseno",
