@@ -331,11 +331,11 @@ function Index() {
       </section>
 
       {/* COTIZADOR */}
-      <section id="cotizador" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24">
-        <div className="grid gap-12 lg:grid-cols-2">
+      <section id="cotizador" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24">
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
           <div>
             <p className="eyebrow">Cotizador rápido</p>
-            <h2 className="mt-4 text-4xl font-semibold leading-tight">
+            <h2 className="mt-4 text-3xl font-semibold leading-tight sm:text-4xl">
               Arma tu proyecto y envíalo por WhatsApp.
             </h2>
             <p className="mt-4 text-sm text-muted-foreground">
@@ -344,7 +344,7 @@ function Index() {
             </p>
           </div>
 
-          <div className="rounded-xl border border-border bg-card p-6">
+          <div className="rounded-xl border border-border bg-card p-4 sm:p-6">
             <p className="eyebrow">Servicios de interés</p>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
               {SERVICES.map((s) => {
